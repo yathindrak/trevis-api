@@ -1,0 +1,1 @@
+[error] sbt.librarymanagement.ResolveException: unresolved dependency: org.scalatestplus.play#scalatestplus-play_2.12;1.5.1: not found
