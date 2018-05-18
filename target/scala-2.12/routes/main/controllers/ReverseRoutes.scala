@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/URAWYYA/IdeaProjects/trevis-api/conf/routes
-// @DATE:Wed May 16 21:22:47 IST 2018
+// @DATE:Fri May 18 06:09:06 IST 2018
 
 import play.api.mvc.Call
 
@@ -37,6 +37,45 @@ package controllers {
     def versioned(file:Asset): Call = {
       implicit lazy val _rrc = new play.core.routing.ReverseRouteContext(Map(("path", "/public"))); _rrc
       Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[play.api.mvc.PathBindable[Asset]].unbind("file", file))
+    }
+  
+  }
+
+  // @LINE:12
+  class ReverseUserController(_prefix: => String) {
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:18
+    def updateByName(name:String): Call = {
+      
+      Call("PUT", _prefix + { _defaultPrefix } + "update/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("name", name)))
+    }
+  
+    // @LINE:14
+    def sendNotification(device_token:String): Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "send/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("device_token", device_token)))
+    }
+  
+    // @LINE:20
+    def append(): Call = {
+      
+      Call("PUT", _prefix + { _defaultPrefix } + "append")
+    }
+  
+    // @LINE:16
+    def sendMail(): Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "mail")
+    }
+  
+    // @LINE:12
+    def save(): Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "add")
     }
   
   }

@@ -7,6 +7,8 @@ timestamp=$(date + "%Y-%m-%d-%H-%M-%S")
 echo "** Create the executable zip file"
 sbt dist
 
+set -x && unzip -d svc target/universal/*-1.0-SNAPSHOT.zip && mv svc/*/* svc/ && rm svc/bin/*.bat && mv svc/bin/* svc/bin/start
+
 echo "** Create the docker image"
 docker build -t trevis-api .
 
