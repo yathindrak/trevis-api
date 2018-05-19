@@ -40,6 +40,17 @@ public class UserController extends Controller {
         return ok("insert user success");
     }
 
+    public Result findById(String uid){
+        JsonNode json = request().body().asJson();
+        if(uid == null){
+            return badRequest(Util.createRespone("Expecting Json data", false));
+        }
+        User found_user = user.findById(uid);
+
+        Gson gson = new Gson();
+        return ok(gson.toJson(found_user));
+    }
+
     public Result query()
     {
         return ok(Json.toJson(user.findAll()));
@@ -76,6 +87,15 @@ public class UserController extends Controller {
             return badRequest(Util.createRespone("Expecting Json data", false));
         }
         user.updateByName(name, Json.fromJson(json, User.class));
+        return ok(Json.toJson("Update user successfully"));
+    }
+
+    public Result updateByUID(String uid){
+        JsonNode json = request().body().asJson();
+        if(json == null){
+            return badRequest(Util.createRespone("Expecting Json data", false));
+        }
+        user.updateByUID(uid, Json.fromJson(json, User.class));
         return ok(Json.toJson("Update user successfully"));
     }
 

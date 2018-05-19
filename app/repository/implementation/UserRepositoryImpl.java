@@ -47,8 +47,22 @@ public class UserRepositoryImpl implements IUserRepository {
         {
             UpdateOperations<User> ops = datastore().createUpdateOperations(User.class).addToSet("address",address);
             datastore().update(query, ops);
-
         }
+
+        return true;
+    }
+
+    @Override
+    public User findById(String uid) {
+        User user=datastore().find(User.class).field("userId").equal(uid).get();
+        return user;
+    }
+
+    @Override
+    public boolean updateByUID(String uid, User user) {
+        Query query=datastore().createQuery(User.class).field("userId").equal(uid);
+
+        datastore().updateFirst(query,user,true);
 
         return true;
     }

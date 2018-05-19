@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/URAWYYA/IdeaProjects/trevis-api/conf/routes
-// @DATE:Fri May 18 06:09:06 IST 2018
+// @DATE:Sat May 19 20:22:06 IST 2018
 
 import play.api.mvc.Call
 
@@ -41,41 +41,53 @@ package controllers {
   
   }
 
-  // @LINE:12
+  // @LINE:11
   class ReverseUserController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:18
+    // @LINE:11
+    def findById(uid:String): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "findbyuid/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("uid", uid)))
+    }
+  
+    // @LINE:19
     def updateByName(name:String): Call = {
       
       Call("PUT", _prefix + { _defaultPrefix } + "update/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("name", name)))
     }
   
-    // @LINE:14
+    // @LINE:15
     def sendNotification(device_token:String): Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "send/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("device_token", device_token)))
     }
   
-    // @LINE:20
+    // @LINE:23
     def append(): Call = {
       
       Call("PUT", _prefix + { _defaultPrefix } + "append")
     }
   
-    // @LINE:16
+    // @LINE:17
     def sendMail(): Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "mail")
     }
   
-    // @LINE:12
+    // @LINE:13
     def save(): Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "add")
+    }
+  
+    // @LINE:21
+    def updateByUID(uid:String): Call = {
+      
+      Call("PUT", _prefix + { _defaultPrefix } + "updatebyuid/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("uid", uid)))
     }
   
   }

@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/URAWYYA/IdeaProjects/trevis-api/conf/routes
-// @DATE:Fri May 18 06:09:06 IST 2018
+// @DATE:Sat May 19 20:22:06 IST 2018
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -51,7 +51,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:12
+  // @LINE:11
   class ReverseUserController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -59,7 +59,17 @@ package controllers.javascript {
     }
 
   
-    // @LINE:18
+    // @LINE:11
+    def findById: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.UserController.findById",
+      """
+        function(uid0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "findbyuid/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("uid", uid0))})
+        }
+      """
+    )
+  
+    // @LINE:19
     def updateByName: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.UserController.updateByName",
       """
@@ -69,7 +79,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:14
+    // @LINE:15
     def sendNotification: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.UserController.sendNotification",
       """
@@ -79,7 +89,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:20
+    // @LINE:23
     def append: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.UserController.append",
       """
@@ -89,7 +99,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:16
+    // @LINE:17
     def sendMail: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.UserController.sendMail",
       """
@@ -99,12 +109,22 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:12
+    // @LINE:13
     def save: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.UserController.save",
       """
         function() {
           return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "add"})
+        }
+      """
+    )
+  
+    // @LINE:21
+    def updateByUID: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.UserController.updateByUID",
+      """
+        function(uid0) {
+          return _wA({method:"PUT", url:"""" + _prefix + { _defaultPrefix } + """" + "updatebyuid/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("uid", uid0))})
         }
       """
     )

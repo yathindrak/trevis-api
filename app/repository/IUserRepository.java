@@ -18,5 +18,9 @@ public interface IUserRepository {
 
     boolean updateByName(String name, User user);
 
+    boolean updateByUID(String uid, User user);
+
     boolean append(Address address);
+
+    User findById(String uid);
 }

@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/URAWYYA/IdeaProjects/trevis-api/conf/routes
-// @DATE:Fri May 18 06:09:06 IST 2018
+// @DATE:Sat May 19 20:22:06 IST 2018
 
 package router
 
@@ -18,7 +18,7 @@ class Routes(
   HomeController_0: controllers.HomeController,
   // @LINE:9
   Assets_2: controllers.Assets,
-  // @LINE:12
+  // @LINE:11
   UserController_1: controllers.UserController,
   val prefix: String
 ) extends GeneratedRouter {
@@ -29,7 +29,7 @@ class Routes(
     HomeController_0: controllers.HomeController,
     // @LINE:9
     Assets_2: controllers.Assets,
-    // @LINE:12
+    // @LINE:11
     UserController_1: controllers.UserController
   ) = this(errorHandler, HomeController_0, Assets_2, UserController_1, "/")
 
@@ -45,10 +45,12 @@ class Routes(
   def documentation = List(
     ("""GET""", this.prefix, """controllers.HomeController.index"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """findbyuid/""" + "$" + """uid<[^/]+>""", """controllers.UserController.findById(uid:String)"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """add""", """controllers.UserController.save"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """send/""" + "$" + """device_token<[^/]+>""", """controllers.UserController.sendNotification(device_token:String)"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """mail""", """controllers.UserController.sendMail"""),
     ("""PUT""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """update/""" + "$" + """name<[^/]+>""", """controllers.UserController.updateByName(name:String)"""),
+    ("""PUT""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """updatebyuid/""" + "$" + """uid<[^/]+>""", """controllers.UserController.updateByUID(uid:String)"""),
     ("""PUT""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """append""", """controllers.UserController.append"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
@@ -93,11 +95,29 @@ class Routes(
     )
   )
 
-  // @LINE:12
-  private[this] lazy val controllers_UserController_save2_route = Route("POST",
+  // @LINE:11
+  private[this] lazy val controllers_UserController_findById2_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("findbyuid/"), DynamicPart("uid", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_UserController_findById2_invoker = createInvoker(
+    UserController_1.findById(fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.UserController",
+      "findById",
+      Seq(classOf[String]),
+      "GET",
+      this.prefix + """findbyuid/""" + "$" + """uid<[^/]+>""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:13
+  private[this] lazy val controllers_UserController_save3_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("add")))
   )
-  private[this] lazy val controllers_UserController_save2_invoker = createInvoker(
+  private[this] lazy val controllers_UserController_save3_invoker = createInvoker(
     UserController_1.save,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -111,11 +131,11 @@ class Routes(
     )
   )
 
-  // @LINE:14
-  private[this] lazy val controllers_UserController_sendNotification3_route = Route("POST",
+  // @LINE:15
+  private[this] lazy val controllers_UserController_sendNotification4_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("send/"), DynamicPart("device_token", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_UserController_sendNotification3_invoker = createInvoker(
+  private[this] lazy val controllers_UserController_sendNotification4_invoker = createInvoker(
     UserController_1.sendNotification(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -129,11 +149,11 @@ class Routes(
     )
   )
 
-  // @LINE:16
-  private[this] lazy val controllers_UserController_sendMail4_route = Route("POST",
+  // @LINE:17
+  private[this] lazy val controllers_UserController_sendMail5_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("mail")))
   )
-  private[this] lazy val controllers_UserController_sendMail4_invoker = createInvoker(
+  private[this] lazy val controllers_UserController_sendMail5_invoker = createInvoker(
     UserController_1.sendMail,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -147,11 +167,11 @@ class Routes(
     )
   )
 
-  // @LINE:18
-  private[this] lazy val controllers_UserController_updateByName5_route = Route("PUT",
+  // @LINE:19
+  private[this] lazy val controllers_UserController_updateByName6_route = Route("PUT",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("update/"), DynamicPart("name", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_UserController_updateByName5_invoker = createInvoker(
+  private[this] lazy val controllers_UserController_updateByName6_invoker = createInvoker(
     UserController_1.updateByName(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -165,11 +185,29 @@ class Routes(
     )
   )
 
-  // @LINE:20
-  private[this] lazy val controllers_UserController_append6_route = Route("PUT",
+  // @LINE:21
+  private[this] lazy val controllers_UserController_updateByUID7_route = Route("PUT",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("updatebyuid/"), DynamicPart("uid", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_UserController_updateByUID7_invoker = createInvoker(
+    UserController_1.updateByUID(fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.UserController",
+      "updateByUID",
+      Seq(classOf[String]),
+      "PUT",
+      this.prefix + """updatebyuid/""" + "$" + """uid<[^/]+>""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:23
+  private[this] lazy val controllers_UserController_append8_route = Route("PUT",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("append")))
   )
-  private[this] lazy val controllers_UserController_append6_invoker = createInvoker(
+  private[this] lazy val controllers_UserController_append8_invoker = createInvoker(
     UserController_1.append,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -198,34 +236,46 @@ class Routes(
         controllers_Assets_versioned1_invoker.call(Assets_2.versioned(path, file))
       }
   
-    // @LINE:12
-    case controllers_UserController_save2_route(params@_) =>
-      call { 
-        controllers_UserController_save2_invoker.call(UserController_1.save)
+    // @LINE:11
+    case controllers_UserController_findById2_route(params@_) =>
+      call(params.fromPath[String]("uid", None)) { (uid) =>
+        controllers_UserController_findById2_invoker.call(UserController_1.findById(uid))
       }
   
-    // @LINE:14
-    case controllers_UserController_sendNotification3_route(params@_) =>
+    // @LINE:13
+    case controllers_UserController_save3_route(params@_) =>
+      call { 
+        controllers_UserController_save3_invoker.call(UserController_1.save)
+      }
+  
+    // @LINE:15
+    case controllers_UserController_sendNotification4_route(params@_) =>
       call(params.fromPath[String]("device_token", None)) { (device_token) =>
-        controllers_UserController_sendNotification3_invoker.call(UserController_1.sendNotification(device_token))
+        controllers_UserController_sendNotification4_invoker.call(UserController_1.sendNotification(device_token))
       }
   
-    // @LINE:16
-    case controllers_UserController_sendMail4_route(params@_) =>
+    // @LINE:17
+    case controllers_UserController_sendMail5_route(params@_) =>
       call { 
-        controllers_UserController_sendMail4_invoker.call(UserController_1.sendMail)
+        controllers_UserController_sendMail5_invoker.call(UserController_1.sendMail)
       }
   
-    // @LINE:18
-    case controllers_UserController_updateByName5_route(params@_) =>
+    // @LINE:19
+    case controllers_UserController_updateByName6_route(params@_) =>
       call(params.fromPath[String]("name", None)) { (name) =>
-        controllers_UserController_updateByName5_invoker.call(UserController_1.updateByName(name))
+        controllers_UserController_updateByName6_invoker.call(UserController_1.updateByName(name))
       }
   
-    // @LINE:20
-    case controllers_UserController_append6_route(params@_) =>
+    // @LINE:21
+    case controllers_UserController_updateByUID7_route(params@_) =>
+      call(params.fromPath[String]("uid", None)) { (uid) =>
+        controllers_UserController_updateByUID7_invoker.call(UserController_1.updateByUID(uid))
+      }
+  
+    // @LINE:23
+    case controllers_UserController_append8_route(params@_) =>
       call { 
-        controllers_UserController_append6_invoker.call(UserController_1.append)
+        controllers_UserController_append8_invoker.call(UserController_1.append)
       }
   }
 }
