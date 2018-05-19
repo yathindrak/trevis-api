@@ -19,7 +19,7 @@ import org.simplejavamail.mailer.MailerBuilder;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
-import repository.UserRepository;
+import repository.IUserRepository;
 import util.Util;
 
 import java.io.IOException;
@@ -28,7 +28,7 @@ import java.lang.reflect.Type;
 
 public class UserController extends Controller {
     @Inject
-    private UserRepository user;
+    private IUserRepository user;
     private User usr;
 
     public Result save(){

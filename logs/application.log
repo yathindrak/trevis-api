@@ -1,9 +1,0 @@
-2018-05-18 06:40:32,433 [WARN] from application in play-dev-mode-akka.actor.default-dispatcher-8 - Configuration not found for database: No configuration setting found for key 'db'
-2018-05-18 06:40:33,616 [WARN] from application in play-dev-mode-akka.actor.default-dispatcher-8 - application.conf @ file:/C:/Users/URAWYYA/IdeaProjects/trevis-api/target/scala-2.12/classes/application.conf: 3: play.crypto.secret is deprecated, use play.http.secret.key instead
-2018-05-18 06:40:33,982 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-8 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
-
-    play.filters.csrf.CSRFFilter
-    play.filters.headers.SecurityHeadersFilter
-    play.filters.hosts.AllowedHostsFilter
-
-2018-05-18 06:40:34,194 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-8 - Application started (Dev)

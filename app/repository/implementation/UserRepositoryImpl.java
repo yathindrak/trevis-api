@@ -1,17 +1,17 @@
-package repository.impl;
+package repository.implementation;
 
 import models.Address;
 import models.User;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
-import repository.UserRepository;
+import repository.IUserRepository;
 
 import java.util.List;
 
 import static configuration.config.datastore;
 
-public class UserRopositoryImpl implements UserRepository {
+public class UserRepositoryImpl implements IUserRepository {
 
     @Override
     public List<User> findAll() {
