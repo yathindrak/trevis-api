@@ -25,11 +25,13 @@ import util.Util;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.util.List;
 
 public class UserController extends Controller {
     @Inject
     private IUserRepository user;
     private User usr;
+
 
     public Result save(){
         JsonNode json = request().body().asJson();
@@ -39,6 +41,12 @@ public class UserController extends Controller {
         user.save(Json.fromJson(json, User.class));
         return ok("insert user success");
     }
+
+    public Result getAll(){
+        List<User> users =  user.findAll();
+        return ok(Json.toJson(users));
+    }
+
 
     public Result findById(String uid){
         JsonNode json = request().body().asJson();

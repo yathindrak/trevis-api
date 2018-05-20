@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/URAWYYA/IdeaProjects/trevis-api/conf/routes
-// @DATE:Sat May 19 20:22:06 IST 2018
+// @DATE:Sun May 20 11:11:12 IST 2018
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -59,7 +59,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:11
+    // @LINE:13
     def findById: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.UserController.findById",
       """
@@ -69,7 +69,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:19
+    // @LINE:21
     def updateByName: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.UserController.updateByName",
       """
@@ -79,7 +79,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:15
+    // @LINE:17
     def sendNotification: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.UserController.sendNotification",
       """
@@ -89,7 +89,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:23
+    // @LINE:25
     def append: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.UserController.append",
       """
@@ -99,7 +99,17 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:17
+    // @LINE:11
+    def getAll: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.UserController.getAll",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "getAll"})
+        }
+      """
+    )
+  
+    // @LINE:19
     def sendMail: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.UserController.sendMail",
       """
@@ -109,7 +119,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:13
+    // @LINE:15
     def save: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.UserController.save",
       """
@@ -119,7 +129,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:21
+    // @LINE:23
     def updateByUID: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.UserController.updateByUID",
       """
