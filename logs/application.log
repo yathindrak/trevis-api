@@ -1,2 +1,2 @@
-2018-05-20 23:11:23,829 [WARN] from application in play-dev-mode-akka.actor.default-dispatcher-3 - Configuration not found for database: No configuration setting found for key 'db'
-2018-05-20 23:11:25,570 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-3 - Application started (Dev)
+2018-05-21 00:02:25,239 [WARN] from application in play-dev-mode-akka.actor.default-dispatcher-3 - Configuration not found for database: No configuration setting found for key 'db'
+2018-05-21 00:02:26,760 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-3 - Application started (Dev)
