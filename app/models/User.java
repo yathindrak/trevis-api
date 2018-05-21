@@ -10,6 +10,10 @@ public class User implements IUser{
     private String id;
     private String userId;
     private String deviceToken;
+    private String status = "Hi there I am using trevis";
+    private String image = "default";
+    private String thumbimage = "default";
+    private boolean isOnline = false;
     private String name;
     private String email;
     private String password;
@@ -38,6 +42,38 @@ public class User implements IUser{
 
     public void setDeviceToken(String deviceToken) {
         this.deviceToken = deviceToken;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getThumbimage() {
+        return thumbimage;
+    }
+
+    public void setThumbimage(String thumbimage) {
+        this.thumbimage = thumbimage;
+    }
+
+    public boolean isOnline() {
+        return isOnline;
+    }
+
+    public void setOnline(boolean online) {
+        isOnline = online;
     }
 
     public String getName() {
