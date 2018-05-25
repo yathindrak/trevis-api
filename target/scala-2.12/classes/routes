@@ -23,3 +23,15 @@ PUT     /update/:name               controllers.UserController.updateByName(name
 PUT     /updatebyuid/:uid           controllers.UserController.updateByUID(uid: String)
 
 PUT     /append                     controllers.UserController.append
+
+POST    /saveReq                    controllers.FriendReqController.save
+
+GET     /getAllReqs                 controllers.FriendReqController.getAll
+
+GET     /findByReq/:from_uid/:to_uid   controllers.FriendReqController.findByReq(from_uid: String,to_uid:String)
+
+POST    /saveFrnd                    controllers.FriendsController.save
+
+POST    /storeReq/:uid              controllers.FriendsController.append(uid: String)
+
+GET    /isFriend/:current_id/:userId     controllers.FriendsController.isFriend(current_id: String, userId: String)

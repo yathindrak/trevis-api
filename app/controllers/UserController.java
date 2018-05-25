@@ -4,10 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.inject.Inject;
-import models.Address;
-import models.NotificationData;
-import models.NotificationRequestModel;
-import models.User;
+import models.*;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -81,13 +78,29 @@ public class UserController extends Controller {
 
         Gson gson = new Gson();
 
-        Address address = gson.fromJson(json.toString(), Address.class);
+        Friends address = gson.fromJson(json.toString(), Friends.class);
 
 
         http://localhost:9000/update/Yathindra
         user.append(address);
         return ok(Json.toJson("Update user successfully"));
     }
+
+//    public Result appendFrndReq(){
+//        JsonNode json = request().body().asJson();
+//        if(json == null){
+//            return badRequest(Util.createRespone("Expecting Json data", false));
+//        }
+//
+//        Gson gson = new Gson();
+//
+//        FriendRequest request = gson.fromJson(json.toString(), FriendRequest.class);
+//
+//
+//        http://localhost:9000/update/Yathindra
+//        user.appendFriendRequest(request);
+//        return ok(Json.toJson("Update user successfully"));
+//    }
 
     public Result updateByName(String name){
         JsonNode json = request().body().asJson();

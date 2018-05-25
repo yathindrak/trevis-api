@@ -1,7 +1,8 @@
 package repository;
 
 import com.google.inject.ImplementedBy;
-import models.Address;
+import models.Friends;
+import models.FriendRequest;
 import models.User;
 import repository.implementation.UserRepositoryImpl;
 
@@ -20,7 +21,10 @@ public interface IUserRepository {
 
     boolean updateByUID(String uid, User user);
 
-    boolean append(Address address);
+    boolean append(Friends address);
+
+    //boolean appendFriendRequest(FriendRequest request);
+
 
     User findById(String uid);
 }

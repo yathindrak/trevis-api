@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/URAWYYA/IdeaProjects/trevis-api/conf/routes
-// @DATE:Sun May 20 11:11:12 IST 2018
+// @DATE:Fri May 25 12:52:09 IST 2018
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -10,26 +10,6 @@ import _root_.play.libs.F
 
 // @LINE:6
 package controllers.javascript {
-
-  // @LINE:6
-  class ReverseHomeController(_prefix: => String) {
-
-    def _defaultPrefix: String = {
-      if (_prefix.endsWith("/")) "" else "/"
-    }
-
-  
-    // @LINE:6
-    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.HomeController.index",
-      """
-        function() {
-          return _wA({method:"GET", url:"""" + _prefix + """"})
-        }
-      """
-    )
-  
-  }
 
   // @LINE:9
   class ReverseAssets(_prefix: => String) {
@@ -45,6 +25,46 @@ package controllers.javascript {
       """
         function(file1) {
           return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "assets/" + (""" + implicitly[play.api.mvc.PathBindable[Asset]].javascriptUnbind + """)("file", file1)})
+        }
+      """
+    )
+  
+  }
+
+  // @LINE:33
+  class ReverseFriendsController(_prefix: => String) {
+
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:37
+    def isFriend: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.FriendsController.isFriend",
+      """
+        function(current_id0,userId1) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "isFriend/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("current_id", current_id0)) + "/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("userId", userId1))})
+        }
+      """
+    )
+  
+    // @LINE:33
+    def save: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.FriendsController.save",
+      """
+        function() {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "saveFrnd"})
+        }
+      """
+    )
+  
+    // @LINE:35
+    def append: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.FriendsController.append",
+      """
+        function(uid0) {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "storeReq/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("uid", uid0))})
         }
       """
     )
@@ -135,6 +155,66 @@ package controllers.javascript {
       """
         function(uid0) {
           return _wA({method:"PUT", url:"""" + _prefix + { _defaultPrefix } + """" + "updatebyuid/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("uid", uid0))})
+        }
+      """
+    )
+  
+  }
+
+  // @LINE:6
+  class ReverseHomeController(_prefix: => String) {
+
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:6
+    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.HomeController.index",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + """"})
+        }
+      """
+    )
+  
+  }
+
+  // @LINE:27
+  class ReverseFriendReqController(_prefix: => String) {
+
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:27
+    def save: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.FriendReqController.save",
+      """
+        function() {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "saveReq"})
+        }
+      """
+    )
+  
+    // @LINE:29
+    def getAll: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.FriendReqController.getAll",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "getAllReqs"})
+        }
+      """
+    )
+  
+    // @LINE:31
+    def findByReq: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.FriendReqController.findByReq",
+      """
+        function(from_uid0,to_uid1) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "findByReq/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("from_uid", from_uid0)) + "/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("to_uid", to_uid1))})
         }
       """
     )

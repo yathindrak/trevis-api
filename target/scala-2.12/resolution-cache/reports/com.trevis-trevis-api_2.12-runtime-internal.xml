@@ -7,7 +7,7 @@
 		revision="1.0-SNAPSHOT"
 		conf="runtime-internal"
 		confs="compile, runtime, test, provided, optional, universal, universal-docs, universal-src, docker, windows, linux, rpm, debian, compile-internal, runtime-internal, test-internal, plugin, pom, scala-tool, docs"
-		date="20180521000120"/>
+		date="20180521080620"/>
 	<dependencies>
 		<module organisation="org.simplejavamail" name="simple-java-mail">
 			<revision name="5.0.3" status="release" pubdate="20180411204243" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://http://www.simplejavamail.org/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="90">

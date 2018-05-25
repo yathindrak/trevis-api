@@ -1,6 +1,7 @@
 package repository.implementation;
 
-import models.Address;
+import models.Friends;
+import models.FriendRequest;
 import models.User;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.query.Query;
@@ -39,8 +40,11 @@ public class UserRepositoryImpl implements IUserRepository {
         return true;
     }
 
+
+    /*
+    * This can be modified to add friend requests*/
     @Override
-    public boolean append(Address address) {
+    public boolean append(Friends address) {
         Query query=datastore().createQuery(User.class).filter("name", "Yathindra");
 
         if(query.count()==1)
@@ -51,6 +55,19 @@ public class UserRepositoryImpl implements IUserRepository {
 
         return true;
     }
+
+//    @Override
+//    public boolean appendFriendRequest(String userId , FriendRequest request) {
+//        Query query=datastore().createQuery(User.class).filter("userId", userId);
+//
+//        if(query.count()==1)
+//        {
+//            UpdateOperations<User> ops = datastore().createUpdateOperations(User.class).addToSet("request",request);
+//            datastore().update(query, ops);
+//        }
+//
+//        return true;
+//    }
 
     @Override
     public User findById(String uid) {
