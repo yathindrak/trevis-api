@@ -5,7 +5,7 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
 
-@Entity(value = "friendRequest", noClassnameStored = true)
+@Entity(value = "FriendRequest", noClassnameStored = true)
 public class FriendRequest {
     @Id
     private String id;

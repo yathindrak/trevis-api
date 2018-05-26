@@ -52,13 +52,15 @@ public class ReqRepositoryImpl implements IRequestRepository {
 
     @Override
     public FriendRequest findByReq(String from_uid, String to_uid) {
-        Query<FriendRequest> query = datastore.find(FriendRequest.class);
+        Query<FriendRequest> query = datastore().find(FriendRequest.class);
         query.and(
                 query.criteria("from").equal(from_uid),
                 query.criteria("to").equal(to_uid));
         List<FriendRequest> list = query.asList();
 
-        return list.get(0);
+        if (list.size() > 0)
+            return list.get(0);
+        return null;
     }
 
     @Override

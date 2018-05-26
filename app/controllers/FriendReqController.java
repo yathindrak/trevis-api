@@ -35,7 +35,7 @@ public class FriendReqController  extends Controller {
     }
 
     public Result findByReq(String from_uid, String to_uid){
-        JsonNode json = request().body().asJson();
+//        JsonNode json = request().body().asJson();
         if(from_uid == null || to_uid == null){
             return badRequest(Util.createRespone("Expecting Json data", false));
         }
