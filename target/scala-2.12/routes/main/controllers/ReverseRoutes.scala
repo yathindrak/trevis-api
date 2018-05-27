@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/URAWYYA/IdeaProjects/trevis-api/conf/routes
-// @DATE:Fri May 25 12:52:09 IST 2018
+// @DATE:Sat May 26 22:12:00 IST 2018
 
 import play.api.mvc.Call
 
@@ -33,10 +33,16 @@ package controllers {
     }
 
   
-    // @LINE:37
-    def isFriend(current_id:String, userId:String): Call = {
+    // @LINE:44
+    def sendNotify(): Call = {
       
-      Call("GET", _prefix + { _defaultPrefix } + "isFriend/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("current_id", current_id)) + "/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("userId", userId)))
+      Call("GET", _prefix + { _defaultPrefix } + "aa")
+    }
+  
+    // @LINE:35
+    def append(uid:String): Call = {
+      
+      Call("PUT", _prefix + { _defaultPrefix } + "storeFrnd/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("uid", uid)))
     }
   
     // @LINE:33
@@ -45,10 +51,16 @@ package controllers {
       Call("POST", _prefix + { _defaultPrefix } + "saveFrnd")
     }
   
-    // @LINE:35
-    def append(uid:String): Call = {
+    // @LINE:41
+    def deleteFriend(): Call = {
       
-      Call("POST", _prefix + { _defaultPrefix } + "storeReq/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("uid", uid)))
+      Call("GET", _prefix + { _defaultPrefix } + "test")
+    }
+  
+    // @LINE:37
+    def isFriend(current_id:String, userId:String): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "isFriend/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("current_id", current_id)) + "/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("userId", userId)))
     }
   
   }
@@ -131,6 +143,12 @@ package controllers {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
+  
+    // @LINE:39
+    def deleteReq(from:String, to:String): Call = {
+      
+      Call("DELETE", _prefix + { _defaultPrefix } + "deleteReq/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("from", from)) + "/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("to", to)))
+    }
   
     // @LINE:27
     def save(): Call = {

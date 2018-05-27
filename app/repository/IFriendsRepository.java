@@ -33,4 +33,7 @@ public interface IFriendsRepository {
 //    FriendRequest findByTo(String uid);
 //    FriendRequest findByReq(String from_uid, String to_uid);
 
+    Friends deleteFriend();
+
+    void sendNotify(String uid);
 }

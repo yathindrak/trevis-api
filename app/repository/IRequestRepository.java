@@ -1,7 +1,9 @@
 package repository;
 
 import com.google.inject.ImplementedBy;
+import models.Friend;
 import models.FriendRequest;
+import models.Friends;
 import repository.implementation.ReqRepositoryImpl;
 
 import java.util.List;
@@ -26,5 +28,8 @@ public interface IRequestRepository {
     FriendRequest findByFrom(String uid);
     FriendRequest findByTo(String uid);
     FriendRequest findByReq(String from_uid, String to_uid);
+    boolean deleteReq(FriendRequest friendRequest);
+
+
 
 }

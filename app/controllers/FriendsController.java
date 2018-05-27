@@ -47,6 +47,11 @@ public class FriendsController  extends Controller {
         return ok(Json.toJson("Update friend successfully"));
     }
 
+    public Result deleteFriend(){
+        Friends friend = friendsRepo.deleteFriend();
+        return ok(Json.toJson(friend));
+    }
+
 //    public Result findByReq(String from_uid, String to_uid){
 ////        JsonNode json = request().body().asJson();
 //        if(from_uid == null || to_uid == null){
@@ -70,5 +75,11 @@ public class FriendsController  extends Controller {
         //Friends friends = gson.fromJson(json.toString(), Friends.class);
         boolean status = friendsRepo.isFriend(current_id, userId);
         return ok(Json.toJson(status));
+    }
+
+    public Result sendNotify(String uuid){
+        friendsRepo.sendNotify(uuid);
+
+        return ok();
     }
 }

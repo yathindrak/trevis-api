@@ -1,6 +1,7 @@
 package configuration;
 
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoClientURI;
 import com.typesafe.config.ConfigFactory;
 import org.mongodb.morphia.Datastore;
@@ -32,10 +33,16 @@ public class config {
 //        String database = ConfigFactory.load().getString("mongodb.database");
 //        String password = ConfigFactory.load().getString("mongodb.password");
 
-        MongoClientURI uri = new MongoClientURI("mongodb://trevis-db:trevis123@ds227740.mlab.com:27740/trevis-db");
+        MongoClientOptions.Builder options = MongoClientOptions.builder();
+        options.socketKeepAlive(true);
+        //mongoClient = new MongoClient(mongoAddress, options.build());
+
+        MongoClientURI uri = new MongoClientURI("mongodb://trevis-db:trevis123@ds227740.mlab.com:27740/trevis-db", options);
 
         //MongoClient mongoClient = new MongoClient("mongodb://trevis-db:trevis123@ds227740.mlab.com:27740");
 
         datastore = morphia.createDatastore(new MongoClient(uri), "trevis-db");
+
+
     }
 }

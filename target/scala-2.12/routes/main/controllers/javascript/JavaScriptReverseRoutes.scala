@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/URAWYYA/IdeaProjects/trevis-api/conf/routes
-// @DATE:Fri May 25 12:52:09 IST 2018
+// @DATE:Sat May 26 22:12:00 IST 2018
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -39,12 +39,22 @@ package controllers.javascript {
     }
 
   
-    // @LINE:37
-    def isFriend: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.FriendsController.isFriend",
+    // @LINE:44
+    def sendNotify: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.FriendsController.sendNotify",
       """
-        function(current_id0,userId1) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "isFriend/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("current_id", current_id0)) + "/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("userId", userId1))})
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "aa"})
+        }
+      """
+    )
+  
+    // @LINE:35
+    def append: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.FriendsController.append",
+      """
+        function(uid0) {
+          return _wA({method:"PUT", url:"""" + _prefix + { _defaultPrefix } + """" + "storeFrnd/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("uid", uid0))})
         }
       """
     )
@@ -59,12 +69,22 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:35
-    def append: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.FriendsController.append",
+    // @LINE:41
+    def deleteFriend: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.FriendsController.deleteFriend",
       """
-        function(uid0) {
-          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "storeReq/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("uid", uid0))})
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "test"})
+        }
+      """
+    )
+  
+    // @LINE:37
+    def isFriend: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.FriendsController.isFriend",
+      """
+        function(current_id0,userId1) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "isFriend/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("current_id", current_id0)) + "/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("userId", userId1))})
         }
       """
     )
@@ -188,6 +208,16 @@ package controllers.javascript {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
+  
+    // @LINE:39
+    def deleteReq: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.FriendReqController.deleteReq",
+      """
+        function(from0,to1) {
+          return _wA({method:"DELETE", url:"""" + _prefix + { _defaultPrefix } + """" + "deleteReq/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("from", from0)) + "/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("to", to1))})
+        }
+      """
+    )
   
     // @LINE:27
     def save: JavaScriptReverseRoute = JavaScriptReverseRoute(

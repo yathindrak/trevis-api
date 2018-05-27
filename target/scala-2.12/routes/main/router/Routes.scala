@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/URAWYYA/IdeaProjects/trevis-api/conf/routes
-// @DATE:Fri May 25 12:52:09 IST 2018
+// @DATE:Sat May 26 22:12:00 IST 2018
 
 package router
 
@@ -65,8 +65,11 @@ class Routes(
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """getAllReqs""", """controllers.FriendReqController.getAll"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """findByReq/""" + "$" + """from_uid<[^/]+>/""" + "$" + """to_uid<[^/]+>""", """controllers.FriendReqController.findByReq(from_uid:String, to_uid:String)"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """saveFrnd""", """controllers.FriendsController.save"""),
-    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """storeReq/""" + "$" + """uid<[^/]+>""", """controllers.FriendsController.append(uid:String)"""),
+    ("""PUT""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """storeFrnd/""" + "$" + """uid<[^/]+>""", """controllers.FriendsController.append(uid:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """isFriend/""" + "$" + """current_id<[^/]+>/""" + "$" + """userId<[^/]+>""", """controllers.FriendsController.isFriend(current_id:String, userId:String)"""),
+    ("""DELETE""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """deleteReq/""" + "$" + """from<[^/]+>/""" + "$" + """to<[^/]+>""", """controllers.FriendReqController.deleteReq(from:String, to:String)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """test""", """controllers.FriendsController.deleteFriend"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """aa""", """controllers.FriendsController.sendNotify"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
@@ -327,8 +330,8 @@ class Routes(
   )
 
   // @LINE:35
-  private[this] lazy val controllers_FriendsController_append14_route = Route("POST",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("storeReq/"), DynamicPart("uid", """[^/]+""",true)))
+  private[this] lazy val controllers_FriendsController_append14_route = Route("PUT",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("storeFrnd/"), DynamicPart("uid", """[^/]+""",true)))
   )
   private[this] lazy val controllers_FriendsController_append14_invoker = createInvoker(
     FriendsController_2.append(fakeValue[String]),
@@ -337,8 +340,8 @@ class Routes(
       "controllers.FriendsController",
       "append",
       Seq(classOf[String]),
-      "POST",
-      this.prefix + """storeReq/""" + "$" + """uid<[^/]+>""",
+      "PUT",
+      this.prefix + """storeFrnd/""" + "$" + """uid<[^/]+>""",
       """""",
       Seq()
     )
@@ -357,6 +360,60 @@ class Routes(
       Seq(classOf[String], classOf[String]),
       "GET",
       this.prefix + """isFriend/""" + "$" + """current_id<[^/]+>/""" + "$" + """userId<[^/]+>""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:39
+  private[this] lazy val controllers_FriendReqController_deleteReq16_route = Route("DELETE",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("deleteReq/"), DynamicPart("from", """[^/]+""",true), StaticPart("/"), DynamicPart("to", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_FriendReqController_deleteReq16_invoker = createInvoker(
+    FriendReqController_0.deleteReq(fakeValue[String], fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.FriendReqController",
+      "deleteReq",
+      Seq(classOf[String], classOf[String]),
+      "DELETE",
+      this.prefix + """deleteReq/""" + "$" + """from<[^/]+>/""" + "$" + """to<[^/]+>""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:41
+  private[this] lazy val controllers_FriendsController_deleteFriend17_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("test")))
+  )
+  private[this] lazy val controllers_FriendsController_deleteFriend17_invoker = createInvoker(
+    FriendsController_2.deleteFriend,
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.FriendsController",
+      "deleteFriend",
+      Nil,
+      "GET",
+      this.prefix + """test""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:44
+  private[this] lazy val controllers_FriendsController_sendNotify18_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("aa")))
+  )
+  private[this] lazy val controllers_FriendsController_sendNotify18_invoker = createInvoker(
+    FriendsController_2.sendNotify,
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.FriendsController",
+      "sendNotify",
+      Nil,
+      "GET",
+      this.prefix + """aa""",
       """""",
       Seq()
     )
@@ -459,6 +516,24 @@ class Routes(
     case controllers_FriendsController_isFriend15_route(params@_) =>
       call(params.fromPath[String]("current_id", None), params.fromPath[String]("userId", None)) { (current_id, userId) =>
         controllers_FriendsController_isFriend15_invoker.call(FriendsController_2.isFriend(current_id, userId))
+      }
+  
+    // @LINE:39
+    case controllers_FriendReqController_deleteReq16_route(params@_) =>
+      call(params.fromPath[String]("from", None), params.fromPath[String]("to", None)) { (from, to) =>
+        controllers_FriendReqController_deleteReq16_invoker.call(FriendReqController_0.deleteReq(from, to))
+      }
+  
+    // @LINE:41
+    case controllers_FriendsController_deleteFriend17_route(params@_) =>
+      call { 
+        controllers_FriendsController_deleteFriend17_invoker.call(FriendsController_2.deleteFriend)
+      }
+  
+    // @LINE:44
+    case controllers_FriendsController_sendNotify18_route(params@_) =>
+      call { 
+        controllers_FriendsController_sendNotify18_invoker.call(FriendsController_2.sendNotify)
       }
   }
 }

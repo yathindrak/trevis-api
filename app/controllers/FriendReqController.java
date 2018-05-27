@@ -42,8 +42,26 @@ public class FriendReqController  extends Controller {
         FriendRequest found_request = request.findByReq(from_uid, to_uid);
 
         Gson gson = new Gson();
-        return ok(gson.toJson(found_request));
+        return ok(Json.toJson(found_request));
     }
+
+    public Result deleteReq(String from, String to){
+        JsonNode json = request().body().asJson();
+        Gson gson = new Gson();
+//        if(json == null){
+//            return badRequest(Util.createRespone("Expecting Json data", false));
+//        }
+        FriendRequest friendRequest = new FriendRequest();
+        friendRequest.setFrom(from);
+        friendRequest.setTo(to);
+
+        boolean status = request.deleteReq(friendRequest);
+
+
+        return ok(Json.toJson(status));
+    }
+
+
 
 
 //    public Result append(){

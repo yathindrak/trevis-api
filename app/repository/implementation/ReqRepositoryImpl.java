@@ -1,6 +1,8 @@
 package repository.implementation;
 
+import models.Friend;
 import models.FriendRequest;
+import models.Friends;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
@@ -73,6 +75,19 @@ public class ReqRepositoryImpl implements IRequestRepository {
     public FriendRequest findByTo(String uid) {
         FriendRequest request =datastore().find(FriendRequest.class).field("to").equal(uid).get();
         return request;
+    }
+
+    @Override
+    public boolean deleteReq(FriendRequest friendRequest) {
+
+        Query<FriendRequest> query = datastore().find(FriendRequest.class);
+        query.and(
+                query.criteria("from").equal(friendRequest.getFrom()),
+                query.criteria("to").equal(friendRequest.getTo())
+        );
+        datastore.delete(query);
+
+        return true;
     }
 //    @Override
 //    public boolean updateByUID(String uid, User user) {
