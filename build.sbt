@@ -29,6 +29,13 @@ libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.3.2"
 // https://mvnrepository.com/artifact/org.simplejavamail/simple-java-mail
 libraryDependencies += "org.simplejavamail" % "simple-java-mail" % "5.0.3"
 
+// https://mvnrepository.com/artifact/io.swagger/swagger-play2
+libraryDependencies += "io.swagger" %% "swagger-play2" % "1.6.0"
+
+// https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-annotations
+libraryDependencies += "io.swagger.core.v3" % "swagger-annotations" % "2.0.2"
+
+herokuAppName in Compile := "lit-mesa-28128"
 enablePlugins(ElasticBeanstalkPlugin)
 enablePlugins(DockerPlugin)
 

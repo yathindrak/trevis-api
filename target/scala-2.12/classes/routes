@@ -16,13 +16,13 @@ POST    /add                        controllers.UserController.save
 
 POST    /send/:device_token         controllers.UserController.sendNotification(device_token: String)
 
-POST    /mail                       controllers.UserController.sendMail
+POST    /mail/:email_to             controllers.UserController.sendMail(email_to: String)
 
 PUT     /update/:name               controllers.UserController.updateByName(name: String)
 
 PUT     /updatebyuid/:uid           controllers.UserController.updateByUID(uid: String)
 
-PUT     /append                     controllers.UserController.append
+#PUT     /append                     controllers.UserController.append
 
 POST    /saveReq                    controllers.FriendReqController.save
 
@@ -38,7 +38,12 @@ GET    /isFriend/:current_id/:userId     controllers.FriendsController.isFriend(
 
 DELETE  /deleteReq/:from/:to                  controllers.FriendReqController.deleteReq(from: String,to:String)
 
-GET     /test                       controllers.FriendsController.deleteFriend
+GET     /deleteFrnd                       controllers.FriendsController.deleteFriend
+
+POST     /sendPush/:uuid             controllers.FriendsController.sendNotify(uuid: String)
+
+GET     /docs/              controllers.Assets.at(path="/public/swagger",file="index.html")
+GET     /docs/swagger.json  controllers.ApiHelpController.getResources
+GET     /docs/*file         controllers.Assets.at(path="/public/swagger",file)
 
 
-GET     /aa                         controllers.FriendsController.sendNotify

@@ -1,0 +1,2 @@
+web: target/universal/stage/bin/trevis-api -Dhttp.port=$PORT
+console: target/universal/stage/bin/trevis-api $PLAY_OPTS -main scala.tools.nsc.MainGenericRunner -usejavacp

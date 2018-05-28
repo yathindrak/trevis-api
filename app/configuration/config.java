@@ -7,9 +7,6 @@ import com.typesafe.config.ConfigFactory;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 
-/**
- * Created by Kuylim on 1/3/2017.
- */
 public class config {
     public static Datastore datastore;
 

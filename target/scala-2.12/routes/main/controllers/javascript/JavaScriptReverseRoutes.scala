@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/URAWYYA/IdeaProjects/trevis-api/conf/routes
-// @DATE:Sat May 26 22:12:00 IST 2018
+// @DATE:Mon May 28 11:30:32 IST 2018
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -18,6 +18,24 @@ package controllers.javascript {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
+  
+    // @LINE:45
+    def at: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Assets.at",
+      """
+        function(file1) {
+        
+          if (file1 == """ + implicitly[play.api.mvc.JavascriptLiteral[String]].to("index.html") + """) {
+            return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "docs/"})
+          }
+        
+          if (true) {
+            return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "docs/" + (""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("file", file1)})
+          }
+        
+        }
+      """
+    )
   
     // @LINE:9
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
@@ -39,12 +57,12 @@ package controllers.javascript {
     }
 
   
-    // @LINE:44
+    // @LINE:43
     def sendNotify: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.FriendsController.sendNotify",
       """
-        function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "aa"})
+        function(uuid0) {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "sendPush/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("uuid", uuid0))})
         }
       """
     )
@@ -74,7 +92,7 @@ package controllers.javascript {
       "controllers.FriendsController.deleteFriend",
       """
         function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "test"})
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "deleteFrnd"})
         }
       """
     )
@@ -129,12 +147,12 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:25
-    def append: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.UserController.append",
+    // @LINE:19
+    def sendMail: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.UserController.sendMail",
       """
-        function() {
-          return _wA({method:"PUT", url:"""" + _prefix + { _defaultPrefix } + """" + "append"})
+        function(email_to0) {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "mail/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("email_to", email_to0))})
         }
       """
     )
@@ -145,16 +163,6 @@ package controllers.javascript {
       """
         function() {
           return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "getAll"})
-        }
-      """
-    )
-  
-    // @LINE:19
-    def sendMail: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.UserController.sendMail",
-      """
-        function() {
-          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "mail"})
         }
       """
     )
@@ -195,6 +203,26 @@ package controllers.javascript {
       """
         function() {
           return _wA({method:"GET", url:"""" + _prefix + """"})
+        }
+      """
+    )
+  
+  }
+
+  // @LINE:46
+  class ReverseApiHelpController(_prefix: => String) {
+
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:46
+    def getResources: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.ApiHelpController.getResources",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "docs/swagger.json"})
         }
       """
     )

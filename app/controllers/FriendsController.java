@@ -3,6 +3,7 @@ package controllers;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.gson.Gson;
 import com.google.inject.Inject;
+import io.swagger.annotations.*;
 import models.Friend;
 import models.FriendRequest;
 import models.Friends;
@@ -15,11 +16,35 @@ import util.Util;
 
 import java.util.List;
 
+@Api(value = "/", description = "Operations with Friends")
 public class FriendsController  extends Controller {
     @Inject
     private IFriendsRepository friendsRepo;
     private FriendRequest friendRequest;
 
+    @ApiOperation(
+            nickname = "createUser",
+            value = "Create user record in Friend collection when creating a new user",
+            notes = "Create Friend record",
+            httpMethod = "POST",
+            response = Friend.class
+    )
+    @ApiImplicitParams(
+            {
+                    @ApiImplicitParam(
+                            name = "body",
+                            dataType = "Friend",
+                            required = true,
+                            paramType = "body",
+                            value = "Friend"
+                    )
+            }
+    )
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 500, message = "Bad Request")
+            }
+    )
     public Result save(){
         JsonNode json = request().body().asJson();
         if(json == null){
@@ -29,11 +54,35 @@ public class FriendsController  extends Controller {
         return ok("insert user success");
     }
 
+    @ApiOperation(value = "get All Friends",
+            notes = "Returns List of all Users",
+            response = Friend.class,
+            httpMethod = "GET")
     public Result getAll(){
         List<Friend> friends =  friendsRepo.findAll();
         return ok(Json.toJson(friends));
     }
 
+    @ApiOperation(value = "Store a new friend",
+            notes = "Add a friend for a user",
+            response = Friends.class,
+            httpMethod = "GET")
+    @ApiImplicitParams(
+            {
+                    @ApiImplicitParam(
+                            name = "body",
+                            dataType = "Friends",
+                            required = true,
+                            paramType = "body",
+                            value = "Friends"
+                    )
+            }
+    )
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 500, message = "Bad Request")
+            }
+    )
     public Result append(String userId){
         JsonNode json = request().body().asJson();
         if(json == null){
@@ -47,6 +96,26 @@ public class FriendsController  extends Controller {
         return ok(Json.toJson("Update friend successfully"));
     }
 
+    @ApiOperation(value = "Delete a friend",
+            notes = "Delete a friend",
+            response = Friend.class,
+            httpMethod = "DELETE")
+    @ApiImplicitParams(
+            {
+                    @ApiImplicitParam(
+                            name = "body",
+                            dataType = "Friend",
+                            required = true,
+                            paramType = "body",
+                            value = "Friend"
+                    )
+            }
+    )
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 500, message = "Bad Request")
+            }
+    )
     public Result deleteFriend(){
         Friends friend = friendsRepo.deleteFriend();
         return ok(Json.toJson(friend));
@@ -64,6 +133,10 @@ public class FriendsController  extends Controller {
 //    }
 
 
+    @ApiOperation(value = "Check whether a friend",
+            notes = "Check whether a friend",
+            response = boolean.class,
+            httpMethod = "DELETE")
     public Result isFriend(String current_id, String userId){
 //        JsonNode json = request().body().asJson();
 //        if(json == null){
@@ -77,9 +150,12 @@ public class FriendsController  extends Controller {
         return ok(Json.toJson(status));
     }
 
+    @ApiOperation(value = "Send push notifications for all friends of a particular uid",
+            notes = "Should pass uid of a user",
+            response = boolean.class,
+            httpMethod = "DELETE")
     public Result sendNotify(String uuid){
         friendsRepo.sendNotify(uuid);
-
         return ok();
     }
 }

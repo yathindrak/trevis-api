@@ -3,6 +3,7 @@ package controllers;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.gson.Gson;
 import com.google.inject.Inject;
+import io.swagger.annotations.*;
 import models.Friend;
 import models.FriendRequest;
 import models.Friends;
@@ -15,11 +16,35 @@ import util.Util;
 
 import java.util.List;
 
+@Api(value = "/", description = "Operations with Friend Requests")
 public class FriendReqController  extends Controller {
     @Inject
     private IRequestRepository request;
     private Friend friend;
 
+    @ApiOperation(
+            nickname = "createRequest",
+            value = "Create FriendRequest",
+            notes = "Create FriendRequest record",
+            httpMethod = "POST",
+            response = FriendRequest.class
+    )
+    @ApiImplicitParams(
+            {
+                    @ApiImplicitParam(
+                            name = "body",
+                            dataType = "FriendRequest",
+                            required = true,
+                            paramType = "body",
+                            value = "FriendRequest"
+                    )
+            }
+    )
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 500, message = "Bad Request")
+            }
+    )
     public Result save(){
         JsonNode json = request().body().asJson();
         if(json == null){
@@ -29,11 +54,19 @@ public class FriendReqController  extends Controller {
         return ok("insert user success");
     }
 
+    @ApiOperation(value = "Get All Friend Requests",
+            notes = "Returns List of all Friend Requests",
+            response = FriendRequest.class,
+            httpMethod = "GET")
     public Result getAll(){
         List<FriendRequest> requests =  request.findAll();
         return ok(Json.toJson(requests));
     }
 
+    @ApiOperation(value = "Get a friend request",
+            notes = "Returns a friend request by sender and receiver's UIDs",
+            response = FriendRequest.class,
+            httpMethod = "GET")
     public Result findByReq(String from_uid, String to_uid){
 //        JsonNode json = request().body().asJson();
         if(from_uid == null || to_uid == null){
@@ -45,6 +78,10 @@ public class FriendReqController  extends Controller {
         return ok(Json.toJson(found_request));
     }
 
+    @ApiOperation(value = "Delete a friend request",
+            notes = "Delete a friend request",
+            response = boolean.class,
+            httpMethod = "DELETE")
     public Result deleteReq(String from, String to){
         JsonNode json = request().body().asJson();
         Gson gson = new Gson();

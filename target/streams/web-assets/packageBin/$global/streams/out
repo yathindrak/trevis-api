@@ -1,1 +1,41 @@
-[0m[[0m[0mdebug[0m] [0m[0mJar uptodate: C:\Users\URAWYYA\IdeaProjects\trevis-api\target\scala-2.12\trevis-api_2.12-1.0-SNAPSHOT-web-assets.jar[0m
+[0m[[0m[0minfo[0m] [0m[0mPackaging C:\Users\URAWYYA\IdeaProjects\trevis-api\target\scala-2.12\trevis-api_2.12-1.0-SNAPSHOT-web-assets.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	public/javascripts[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\URAWYYA\IdeaProjects\trevis-api\public\javascripts[0m
+[0m[[0m[0mdebug[0m] [0m[0m	public/images\favicon.png[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\URAWYYA\IdeaProjects\trevis-api\public\images\favicon.png[0m
+[0m[[0m[0mdebug[0m] [0m[0m	public/javascripts\main.js[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\URAWYYA\IdeaProjects\trevis-api\public\javascripts\main.js[0m
+[0m[[0m[0mdebug[0m] [0m[0m	public/swagger\swagger-ui-bundle.js.map[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\URAWYYA\IdeaProjects\trevis-api\public\swagger\swagger-ui-bundle.js.map[0m
+[0m[[0m[0mdebug[0m] [0m[0m	public/swagger\swagger-ui.css[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\URAWYYA\IdeaProjects\trevis-api\public\swagger\swagger-ui.css[0m
+[0m[[0m[0mdebug[0m] [0m[0m	public/swagger\swagger-ui.css.map[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\URAWYYA\IdeaProjects\trevis-api\public\swagger\swagger-ui.css.map[0m
+[0m[[0m[0mdebug[0m] [0m[0m	public/swagger\favicon-32x32.png[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\URAWYYA\IdeaProjects\trevis-api\public\swagger\favicon-32x32.png[0m
+[0m[[0m[0mdebug[0m] [0m[0m	public/swagger\favicon-16x16.png[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\URAWYYA\IdeaProjects\trevis-api\public\swagger\favicon-16x16.png[0m
+[0m[[0m[0mdebug[0m] [0m[0m	public/swagger\swagger-ui.js[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\URAWYYA\IdeaProjects\trevis-api\public\swagger\swagger-ui.js[0m
+[0m[[0m[0mdebug[0m] [0m[0m	public/swagger\swagger-ui-standalone-preset.js[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\URAWYYA\IdeaProjects\trevis-api\public\swagger\swagger-ui-standalone-preset.js[0m
+[0m[[0m[0mdebug[0m] [0m[0m	public/swagger\index.html[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\URAWYYA\IdeaProjects\trevis-api\public\swagger\index.html[0m
+[0m[[0m[0mdebug[0m] [0m[0m	public/stylesheets[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\URAWYYA\IdeaProjects\trevis-api\public\stylesheets[0m
+[0m[[0m[0mdebug[0m] [0m[0m	public/stylesheets\main.css[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\URAWYYA\IdeaProjects\trevis-api\public\stylesheets\main.css[0m
+[0m[[0m[0mdebug[0m] [0m[0m	public/images[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\URAWYYA\IdeaProjects\trevis-api\public\images[0m
+[0m[[0m[0mdebug[0m] [0m[0m	public/swagger[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\URAWYYA\IdeaProjects\trevis-api\public\swagger[0m
+[0m[[0m[0mdebug[0m] [0m[0m	public/swagger\oauth2-redirect.html[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\URAWYYA\IdeaProjects\trevis-api\public\swagger\oauth2-redirect.html[0m
+[0m[[0m[0mdebug[0m] [0m[0m	public/swagger\swagger-ui-bundle.js[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\URAWYYA\IdeaProjects\trevis-api\public\swagger\swagger-ui-bundle.js[0m
+[0m[[0m[0mdebug[0m] [0m[0m	public/swagger\swagger-ui-standalone-preset.js.map[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\URAWYYA\IdeaProjects\trevis-api\public\swagger\swagger-ui-standalone-preset.js.map[0m
+[0m[[0m[0mdebug[0m] [0m[0m	public/swagger\swagger-ui.js.map[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\URAWYYA\IdeaProjects\trevis-api\public\swagger\swagger-ui.js.map[0m
+[0m[[0m[0minfo[0m] [0m[0mDone packaging.[0m

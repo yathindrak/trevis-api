@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.inject.Inject;
+import io.swagger.annotations.*;
 import models.*;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -24,12 +25,35 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.List;
 
+@Api(value = "/", description = "Operations with User")
 public class UserController extends Controller {
     @Inject
     private IUserRepository user;
     private User usr;
 
-
+    @ApiOperation(
+            nickname = "createUser",
+            value = "Create User",
+            notes = "Create User record",
+            httpMethod = "POST",
+            response = User.class
+    )
+    @ApiImplicitParams(
+            {
+                    @ApiImplicitParam(
+                            name = "body",
+                            dataType = "User",
+                            required = true,
+                            paramType = "body",
+                            value = "User"
+                    )
+            }
+    )
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 500, message = "Bad Request")
+            }
+    )
     public Result save(){
         JsonNode json = request().body().asJson();
         if(json == null){
@@ -39,12 +63,20 @@ public class UserController extends Controller {
         return ok("insert user success");
     }
 
+    @ApiOperation(value = "Get All Users",
+            notes = "Returns List of all Users",
+            response = User.class,
+            httpMethod = "GET")
     public Result getAll(){
         List<User> users =  user.findAll();
         return ok(Json.toJson(users));
     }
 
 
+    @ApiOperation(value = "Get a user",
+            notes = "Returns a User by UID",
+            response = User.class,
+            httpMethod = "GET")
     public Result findById(String uid){
         JsonNode json = request().body().asJson();
         if(uid == null){
@@ -56,11 +88,16 @@ public class UserController extends Controller {
         return ok(gson.toJson(found_user));
     }
 
+
     public Result query()
     {
         return ok(Json.toJson(user.findAll()));
     }
 
+    @ApiOperation(value = "Update user by uid",
+            notes = "Returns a user",
+            response = User.class,
+            httpMethod = "GET")
     public Result update(String id){
         JsonNode json = request().body().asJson();
         if(json == null){
@@ -69,6 +106,7 @@ public class UserController extends Controller {
         user.update(id, Json.fromJson(json, User.class));
         return ok(Json.toJson("Update user successfully"));
     }
+
 
     public Result append(){
         JsonNode json = request().body().asJson();
@@ -81,7 +119,7 @@ public class UserController extends Controller {
         Friends address = gson.fromJson(json.toString(), Friends.class);
 
 
-        http://localhost:9000/update/Yathindra
+        //http://localhost:9000/update/Yathindra
         user.append(address);
         return ok(Json.toJson("Update user successfully"));
     }
@@ -102,6 +140,25 @@ public class UserController extends Controller {
 //        return ok(Json.toJson("Update user successfully"));
 //    }
 
+    @ApiOperation(value = "Update user by name",
+            response = User.class,
+            httpMethod = "PUT")
+    @ApiImplicitParams(
+            {
+                    @ApiImplicitParam(
+                            name = "body",
+                            dataType = "User",
+                            required = true,
+                            paramType = "body",
+                            value = "User"
+                    )
+            }
+    )
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 500, message = "Bad Request")
+            }
+    )
     public Result updateByName(String name){
         JsonNode json = request().body().asJson();
         if(json == null){
@@ -111,6 +168,25 @@ public class UserController extends Controller {
         return ok(Json.toJson("Update user successfully"));
     }
 
+    @ApiOperation(value = "Update user by uid",
+            response = User.class,
+            httpMethod = "PUT")
+    @ApiImplicitParams(
+            {
+                    @ApiImplicitParam(
+                            name = "body",
+                            dataType = "User",
+                            required = true,
+                            paramType = "body",
+                            value = "User"
+                    )
+            }
+    )
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 500, message = "Bad Request")
+            }
+    )
     public Result updateByUID(String uid){
         JsonNode json = request().body().asJson();
         if(json == null){
@@ -119,6 +195,8 @@ public class UserController extends Controller {
         user.updateByUID(uid, Json.fromJson(json, User.class));
         return ok(Json.toJson("Update user successfully"));
     }
+
+
 
     public Result sendNotification(String device_token){
         System.out.println("Welcome to Developine");
@@ -179,17 +257,21 @@ public class UserController extends Controller {
         return ok();
     }
 
-    public Result sendMail(){
+    @ApiOperation(value = "Send Email",
+            response = User.class,
+            httpMethod = "POST")
+    public Result sendMail(String email_to){
         //new MailerService().sendEmail();
 
         Email email = EmailBuilder.startingBlank()
                 .from("Michel Baker", "m.baker@mbakery.com")
-                .to("mom", "yathindrarawya123@gmail.com")
-                .to("dad", "StevenOakly1963@hotmail.com")
+                .to("mom", email_to)
+//                .to("dad", "StevenOakly1963@hotmail.com")
                 .withSubject("My Bakery is finally open!")
                 .withPlainText("Mom, Dad. We did the opening ceremony of our bakery!!!")
                 .buildEmail();
 
+        //For now added a fake email and password
         MailerBuilder
                 .withSMTPServer("smtp.gmail.com", 587, "thilisadunik@gmail.com", "thilisadunik123")
                 .buildMailer()

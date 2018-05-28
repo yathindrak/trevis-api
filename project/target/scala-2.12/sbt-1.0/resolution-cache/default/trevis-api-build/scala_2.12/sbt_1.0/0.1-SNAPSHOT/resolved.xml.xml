@@ -4,7 +4,7 @@
 		module="trevis-api-build"
 		revision="0.1-SNAPSHOT"
 		status="integration"
-		publication="20180517100609"
+		publication="20180528105538"
 		e:sbtVersion="1.0" e:scalaVersion="2.12"
 	>
 		<description>
@@ -36,5 +36,6 @@
 		<dependency org="org.scala-sbt" name="sbt" rev="1.0.4" conf="provided->default(compile)"/>
 		<dependency org="com.typesafe.play" name="sbt-plugin" rev="2.6.13" conf="compile->default(compile)" e:sbtVersion="1.0" e:scalaVersion="2.12"/>
 		<dependency org="io.xogus" name="sbt-elastic-beanstalk" rev="0.7.0" conf="compile->default(compile)" e:sbtVersion="1.0" e:scalaVersion="2.12"/>
+		<dependency org="com.heroku" name="sbt-heroku" rev="2.1.0" conf="compile->default(compile)" e:sbtVersion="1.0" e:scalaVersion="2.12"/>
 	</dependencies>
 </ivy-module>

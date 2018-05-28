@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/URAWYYA/IdeaProjects/trevis-api/conf/routes
-// @DATE:Sat May 26 22:12:00 IST 2018
+// @DATE:Mon May 28 11:30:32 IST 2018
 
 package router
 
@@ -24,6 +24,8 @@ class Routes(
   FriendReqController_0: controllers.FriendReqController,
   // @LINE:33
   FriendsController_2: controllers.FriendsController,
+  // @LINE:46
+  ApiHelpController_5: controllers.ApiHelpController,
   val prefix: String
 ) extends GeneratedRouter {
 
@@ -38,12 +40,14 @@ class Routes(
     // @LINE:27
     FriendReqController_0: controllers.FriendReqController,
     // @LINE:33
-    FriendsController_2: controllers.FriendsController
-  ) = this(errorHandler, HomeController_1, Assets_4, UserController_3, FriendReqController_0, FriendsController_2, "/")
+    FriendsController_2: controllers.FriendsController,
+    // @LINE:46
+    ApiHelpController_5: controllers.ApiHelpController
+  ) = this(errorHandler, HomeController_1, Assets_4, UserController_3, FriendReqController_0, FriendsController_2, ApiHelpController_5, "/")
 
   def withPrefix(prefix: String): Routes = {
     router.RoutesPrefix.setPrefix(prefix)
-    new Routes(errorHandler, HomeController_1, Assets_4, UserController_3, FriendReqController_0, FriendsController_2, prefix)
+    new Routes(errorHandler, HomeController_1, Assets_4, UserController_3, FriendReqController_0, FriendsController_2, ApiHelpController_5, prefix)
   }
 
   private[this] val defaultPrefix: String = {
@@ -57,10 +61,9 @@ class Routes(
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """findbyuid/""" + "$" + """uid<[^/]+>""", """controllers.UserController.findById(uid:String)"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """add""", """controllers.UserController.save"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """send/""" + "$" + """device_token<[^/]+>""", """controllers.UserController.sendNotification(device_token:String)"""),
-    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """mail""", """controllers.UserController.sendMail"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """mail/""" + "$" + """email_to<[^/]+>""", """controllers.UserController.sendMail(email_to:String)"""),
     ("""PUT""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """update/""" + "$" + """name<[^/]+>""", """controllers.UserController.updateByName(name:String)"""),
     ("""PUT""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """updatebyuid/""" + "$" + """uid<[^/]+>""", """controllers.UserController.updateByUID(uid:String)"""),
-    ("""PUT""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """append""", """controllers.UserController.append"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """saveReq""", """controllers.FriendReqController.save"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """getAllReqs""", """controllers.FriendReqController.getAll"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """findByReq/""" + "$" + """from_uid<[^/]+>/""" + "$" + """to_uid<[^/]+>""", """controllers.FriendReqController.findByReq(from_uid:String, to_uid:String)"""),
@@ -68,8 +71,11 @@ class Routes(
     ("""PUT""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """storeFrnd/""" + "$" + """uid<[^/]+>""", """controllers.FriendsController.append(uid:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """isFriend/""" + "$" + """current_id<[^/]+>/""" + "$" + """userId<[^/]+>""", """controllers.FriendsController.isFriend(current_id:String, userId:String)"""),
     ("""DELETE""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """deleteReq/""" + "$" + """from<[^/]+>/""" + "$" + """to<[^/]+>""", """controllers.FriendReqController.deleteReq(from:String, to:String)"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """test""", """controllers.FriendsController.deleteFriend"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """aa""", """controllers.FriendsController.sendNotify"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """deleteFrnd""", """controllers.FriendsController.deleteFriend"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """sendPush/""" + "$" + """uuid<[^/]+>""", """controllers.FriendsController.sendNotify(uuid:String)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """docs/""", """controllers.Assets.at(path:String = "/public/swagger", file:String = "index.html")"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """docs/swagger.json""", """controllers.ApiHelpController.getResources"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """docs/""" + "$" + """file<.+>""", """controllers.Assets.at(path:String = "/public/swagger", file:String)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
@@ -187,17 +193,17 @@ class Routes(
 
   // @LINE:19
   private[this] lazy val controllers_UserController_sendMail6_route = Route("POST",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("mail")))
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("mail/"), DynamicPart("email_to", """[^/]+""",true)))
   )
   private[this] lazy val controllers_UserController_sendMail6_invoker = createInvoker(
-    UserController_3.sendMail,
+    UserController_3.sendMail(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.UserController",
       "sendMail",
-      Nil,
+      Seq(classOf[String]),
       "POST",
-      this.prefix + """mail""",
+      this.prefix + """mail/""" + "$" + """email_to<[^/]+>""",
       """""",
       Seq()
     )
@@ -239,29 +245,11 @@ class Routes(
     )
   )
 
-  // @LINE:25
-  private[this] lazy val controllers_UserController_append9_route = Route("PUT",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("append")))
-  )
-  private[this] lazy val controllers_UserController_append9_invoker = createInvoker(
-    UserController_3.append,
-    play.api.routing.HandlerDef(this.getClass.getClassLoader,
-      "router",
-      "controllers.UserController",
-      "append",
-      Nil,
-      "PUT",
-      this.prefix + """append""",
-      """""",
-      Seq()
-    )
-  )
-
   // @LINE:27
-  private[this] lazy val controllers_FriendReqController_save10_route = Route("POST",
+  private[this] lazy val controllers_FriendReqController_save9_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("saveReq")))
   )
-  private[this] lazy val controllers_FriendReqController_save10_invoker = createInvoker(
+  private[this] lazy val controllers_FriendReqController_save9_invoker = createInvoker(
     FriendReqController_0.save,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -276,10 +264,10 @@ class Routes(
   )
 
   // @LINE:29
-  private[this] lazy val controllers_FriendReqController_getAll11_route = Route("GET",
+  private[this] lazy val controllers_FriendReqController_getAll10_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("getAllReqs")))
   )
-  private[this] lazy val controllers_FriendReqController_getAll11_invoker = createInvoker(
+  private[this] lazy val controllers_FriendReqController_getAll10_invoker = createInvoker(
     FriendReqController_0.getAll,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -294,10 +282,10 @@ class Routes(
   )
 
   // @LINE:31
-  private[this] lazy val controllers_FriendReqController_findByReq12_route = Route("GET",
+  private[this] lazy val controllers_FriendReqController_findByReq11_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("findByReq/"), DynamicPart("from_uid", """[^/]+""",true), StaticPart("/"), DynamicPart("to_uid", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_FriendReqController_findByReq12_invoker = createInvoker(
+  private[this] lazy val controllers_FriendReqController_findByReq11_invoker = createInvoker(
     FriendReqController_0.findByReq(fakeValue[String], fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -312,10 +300,10 @@ class Routes(
   )
 
   // @LINE:33
-  private[this] lazy val controllers_FriendsController_save13_route = Route("POST",
+  private[this] lazy val controllers_FriendsController_save12_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("saveFrnd")))
   )
-  private[this] lazy val controllers_FriendsController_save13_invoker = createInvoker(
+  private[this] lazy val controllers_FriendsController_save12_invoker = createInvoker(
     FriendsController_2.save,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -330,10 +318,10 @@ class Routes(
   )
 
   // @LINE:35
-  private[this] lazy val controllers_FriendsController_append14_route = Route("PUT",
+  private[this] lazy val controllers_FriendsController_append13_route = Route("PUT",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("storeFrnd/"), DynamicPart("uid", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_FriendsController_append14_invoker = createInvoker(
+  private[this] lazy val controllers_FriendsController_append13_invoker = createInvoker(
     FriendsController_2.append(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -348,10 +336,10 @@ class Routes(
   )
 
   // @LINE:37
-  private[this] lazy val controllers_FriendsController_isFriend15_route = Route("GET",
+  private[this] lazy val controllers_FriendsController_isFriend14_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("isFriend/"), DynamicPart("current_id", """[^/]+""",true), StaticPart("/"), DynamicPart("userId", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_FriendsController_isFriend15_invoker = createInvoker(
+  private[this] lazy val controllers_FriendsController_isFriend14_invoker = createInvoker(
     FriendsController_2.isFriend(fakeValue[String], fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -366,10 +354,10 @@ class Routes(
   )
 
   // @LINE:39
-  private[this] lazy val controllers_FriendReqController_deleteReq16_route = Route("DELETE",
+  private[this] lazy val controllers_FriendReqController_deleteReq15_route = Route("DELETE",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("deleteReq/"), DynamicPart("from", """[^/]+""",true), StaticPart("/"), DynamicPart("to", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_FriendReqController_deleteReq16_invoker = createInvoker(
+  private[this] lazy val controllers_FriendReqController_deleteReq15_invoker = createInvoker(
     FriendReqController_0.deleteReq(fakeValue[String], fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -384,10 +372,10 @@ class Routes(
   )
 
   // @LINE:41
-  private[this] lazy val controllers_FriendsController_deleteFriend17_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("test")))
+  private[this] lazy val controllers_FriendsController_deleteFriend16_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("deleteFrnd")))
   )
-  private[this] lazy val controllers_FriendsController_deleteFriend17_invoker = createInvoker(
+  private[this] lazy val controllers_FriendsController_deleteFriend16_invoker = createInvoker(
     FriendsController_2.deleteFriend,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -395,25 +383,79 @@ class Routes(
       "deleteFriend",
       Nil,
       "GET",
-      this.prefix + """test""",
+      this.prefix + """deleteFrnd""",
       """""",
       Seq()
     )
   )
 
-  // @LINE:44
-  private[this] lazy val controllers_FriendsController_sendNotify18_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("aa")))
+  // @LINE:43
+  private[this] lazy val controllers_FriendsController_sendNotify17_route = Route("POST",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("sendPush/"), DynamicPart("uuid", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_FriendsController_sendNotify18_invoker = createInvoker(
-    FriendsController_2.sendNotify,
+  private[this] lazy val controllers_FriendsController_sendNotify17_invoker = createInvoker(
+    FriendsController_2.sendNotify(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.FriendsController",
       "sendNotify",
+      Seq(classOf[String]),
+      "POST",
+      this.prefix + """sendPush/""" + "$" + """uuid<[^/]+>""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:45
+  private[this] lazy val controllers_Assets_at18_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("docs/")))
+  )
+  private[this] lazy val controllers_Assets_at18_invoker = createInvoker(
+    Assets_4.at(fakeValue[String], fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.Assets",
+      "at",
+      Seq(classOf[String], classOf[String]),
+      "GET",
+      this.prefix + """docs/""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:46
+  private[this] lazy val controllers_ApiHelpController_getResources19_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("docs/swagger.json")))
+  )
+  private[this] lazy val controllers_ApiHelpController_getResources19_invoker = createInvoker(
+    ApiHelpController_5.getResources,
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.ApiHelpController",
+      "getResources",
       Nil,
       "GET",
-      this.prefix + """aa""",
+      this.prefix + """docs/swagger.json""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:47
+  private[this] lazy val controllers_Assets_at20_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("docs/"), DynamicPart("file", """.+""",false)))
+  )
+  private[this] lazy val controllers_Assets_at20_invoker = createInvoker(
+    Assets_4.at(fakeValue[String], fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.Assets",
+      "at",
+      Seq(classOf[String], classOf[String]),
+      "GET",
+      this.prefix + """docs/""" + "$" + """file<.+>""",
       """""",
       Seq()
     )
@@ -460,8 +502,8 @@ class Routes(
   
     // @LINE:19
     case controllers_UserController_sendMail6_route(params@_) =>
-      call { 
-        controllers_UserController_sendMail6_invoker.call(UserController_3.sendMail)
+      call(params.fromPath[String]("email_to", None)) { (email_to) =>
+        controllers_UserController_sendMail6_invoker.call(UserController_3.sendMail(email_to))
       }
   
     // @LINE:21
@@ -476,64 +518,76 @@ class Routes(
         controllers_UserController_updateByUID8_invoker.call(UserController_3.updateByUID(uid))
       }
   
-    // @LINE:25
-    case controllers_UserController_append9_route(params@_) =>
-      call { 
-        controllers_UserController_append9_invoker.call(UserController_3.append)
-      }
-  
     // @LINE:27
-    case controllers_FriendReqController_save10_route(params@_) =>
+    case controllers_FriendReqController_save9_route(params@_) =>
       call { 
-        controllers_FriendReqController_save10_invoker.call(FriendReqController_0.save)
+        controllers_FriendReqController_save9_invoker.call(FriendReqController_0.save)
       }
   
     // @LINE:29
-    case controllers_FriendReqController_getAll11_route(params@_) =>
+    case controllers_FriendReqController_getAll10_route(params@_) =>
       call { 
-        controllers_FriendReqController_getAll11_invoker.call(FriendReqController_0.getAll)
+        controllers_FriendReqController_getAll10_invoker.call(FriendReqController_0.getAll)
       }
   
     // @LINE:31
-    case controllers_FriendReqController_findByReq12_route(params@_) =>
+    case controllers_FriendReqController_findByReq11_route(params@_) =>
       call(params.fromPath[String]("from_uid", None), params.fromPath[String]("to_uid", None)) { (from_uid, to_uid) =>
-        controllers_FriendReqController_findByReq12_invoker.call(FriendReqController_0.findByReq(from_uid, to_uid))
+        controllers_FriendReqController_findByReq11_invoker.call(FriendReqController_0.findByReq(from_uid, to_uid))
       }
   
     // @LINE:33
-    case controllers_FriendsController_save13_route(params@_) =>
+    case controllers_FriendsController_save12_route(params@_) =>
       call { 
-        controllers_FriendsController_save13_invoker.call(FriendsController_2.save)
+        controllers_FriendsController_save12_invoker.call(FriendsController_2.save)
       }
   
     // @LINE:35
-    case controllers_FriendsController_append14_route(params@_) =>
+    case controllers_FriendsController_append13_route(params@_) =>
       call(params.fromPath[String]("uid", None)) { (uid) =>
-        controllers_FriendsController_append14_invoker.call(FriendsController_2.append(uid))
+        controllers_FriendsController_append13_invoker.call(FriendsController_2.append(uid))
       }
   
     // @LINE:37
-    case controllers_FriendsController_isFriend15_route(params@_) =>
+    case controllers_FriendsController_isFriend14_route(params@_) =>
       call(params.fromPath[String]("current_id", None), params.fromPath[String]("userId", None)) { (current_id, userId) =>
-        controllers_FriendsController_isFriend15_invoker.call(FriendsController_2.isFriend(current_id, userId))
+        controllers_FriendsController_isFriend14_invoker.call(FriendsController_2.isFriend(current_id, userId))
       }
   
     // @LINE:39
-    case controllers_FriendReqController_deleteReq16_route(params@_) =>
+    case controllers_FriendReqController_deleteReq15_route(params@_) =>
       call(params.fromPath[String]("from", None), params.fromPath[String]("to", None)) { (from, to) =>
-        controllers_FriendReqController_deleteReq16_invoker.call(FriendReqController_0.deleteReq(from, to))
+        controllers_FriendReqController_deleteReq15_invoker.call(FriendReqController_0.deleteReq(from, to))
       }
   
     // @LINE:41
-    case controllers_FriendsController_deleteFriend17_route(params@_) =>
+    case controllers_FriendsController_deleteFriend16_route(params@_) =>
       call { 
-        controllers_FriendsController_deleteFriend17_invoker.call(FriendsController_2.deleteFriend)
+        controllers_FriendsController_deleteFriend16_invoker.call(FriendsController_2.deleteFriend)
       }
   
-    // @LINE:44
-    case controllers_FriendsController_sendNotify18_route(params@_) =>
+    // @LINE:43
+    case controllers_FriendsController_sendNotify17_route(params@_) =>
+      call(params.fromPath[String]("uuid", None)) { (uuid) =>
+        controllers_FriendsController_sendNotify17_invoker.call(FriendsController_2.sendNotify(uuid))
+      }
+  
+    // @LINE:45
+    case controllers_Assets_at18_route(params@_) =>
+      call(Param[String]("path", Right("/public/swagger")), Param[String]("file", Right("index.html"))) { (path, file) =>
+        controllers_Assets_at18_invoker.call(Assets_4.at(path, file))
+      }
+  
+    // @LINE:46
+    case controllers_ApiHelpController_getResources19_route(params@_) =>
       call { 
-        controllers_FriendsController_sendNotify18_invoker.call(FriendsController_2.sendNotify)
+        controllers_ApiHelpController_getResources19_invoker.call(ApiHelpController_5.getResources)
+      }
+  
+    // @LINE:47
+    case controllers_Assets_at20_route(params@_) =>
+      call(Param[String]("path", Right("/public/swagger")), params.fromPath[String]("file", None)) { (path, file) =>
+        controllers_Assets_at20_invoker.call(Assets_4.at(path, file))
       }
   }
 }
