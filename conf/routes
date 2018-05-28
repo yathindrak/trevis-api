@@ -38,7 +38,7 @@ GET    /isFriend/:current_id/:userId     controllers.FriendsController.isFriend(
 
 DELETE  /deleteReq/:from/:to                  controllers.FriendReqController.deleteReq(from: String,to:String)
 
-GET     /deleteFrnd                       controllers.FriendsController.deleteFriend
+DELETE     /deleteFrnd                       controllers.FriendsController.deleteFriend
 
 POST     /sendPush/:uuid             controllers.FriendsController.sendNotify(uuid: String)
 
