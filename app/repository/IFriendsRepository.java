@@ -35,5 +35,5 @@ public interface IFriendsRepository {
 
     Friends deleteFriend();
 
-    void sendNotify(String uid);
+    void sendNotify(String uid, String lat, String lng);
 }

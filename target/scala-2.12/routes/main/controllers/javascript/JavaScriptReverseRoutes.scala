@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/URAWYYA/IdeaProjects/trevis-api/conf/routes
-// @DATE:Mon May 28 11:30:32 IST 2018
+// @DATE:Tue May 29 11:47:44 IST 2018
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -19,7 +19,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:45
+    // @LINE:47
     def at: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.at",
       """
@@ -49,7 +49,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:33
+  // @LINE:31
   class ReverseFriendsController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -57,7 +57,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:43
+    // @LINE:45
     def sendNotify: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.FriendsController.sendNotify",
       """
@@ -67,7 +67,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:35
+    // @LINE:37
     def append: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.FriendsController.append",
       """
@@ -77,7 +77,17 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:33
+    // @LINE:31
+    def getAll: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.FriendsController.getAll",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "getAllFrnds"})
+        }
+      """
+    )
+  
+    // @LINE:35
     def save: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.FriendsController.save",
       """
@@ -87,17 +97,17 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:41
+    // @LINE:43
     def deleteFriend: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.FriendsController.deleteFriend",
       """
         function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "deleteFrnd"})
+          return _wA({method:"DELETE", url:"""" + _prefix + { _defaultPrefix } + """" + "deleteFrnd"})
         }
       """
     )
   
-    // @LINE:37
+    // @LINE:39
     def isFriend: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.FriendsController.isFriend",
       """
@@ -209,7 +219,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:46
+  // @LINE:48
   class ReverseApiHelpController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -217,7 +227,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:46
+    // @LINE:48
     def getResources: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.ApiHelpController.getResources",
       """
@@ -237,7 +247,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:39
+    // @LINE:41
     def deleteReq: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.FriendReqController.deleteReq",
       """
@@ -267,7 +277,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:31
+    // @LINE:33
     def findByReq: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.FriendReqController.findByReq",
       """

@@ -15,6 +15,12 @@ public class NotificationData {
     @SerializedName("title")
     private String mTitle;
 
+//    @SerializedName("lat")
+//    private String lat;
+//
+//    @SerializedName("lng")
+//    private String lng;
+
     public String getDetail() {
         return mDetail;
     }

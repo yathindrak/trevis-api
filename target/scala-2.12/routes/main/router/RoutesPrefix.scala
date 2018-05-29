@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/URAWYYA/IdeaProjects/trevis-api/conf/routes
-// @DATE:Mon May 28 11:30:32 IST 2018
+// @DATE:Tue May 29 11:47:44 IST 2018
 
 
 package router {

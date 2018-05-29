@@ -7,7 +7,7 @@
 		revision="1.0-SNAPSHOT"
 		conf="compile-internal"
 		confs="compile, runtime, test, provided, optional, universal, universal-docs, universal-src, docker, windows, linux, rpm, debian, compile-internal, runtime-internal, test-internal, plugin, pom, scala-tool, docs"
-		date="20180528113032"/>
+		date="20180529114720"/>
 	<dependencies>
 		<module organisation="io.swagger.core.v3" name="swagger-annotations">
 			<revision name="2.0.2" status="release" pubdate="20180524205202" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="107">

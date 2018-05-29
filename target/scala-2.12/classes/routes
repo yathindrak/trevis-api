@@ -28,6 +28,8 @@ POST    /saveReq                    controllers.FriendReqController.save
 
 GET     /getAllReqs                 controllers.FriendReqController.getAll
 
+GET     /getAllFrnds                 controllers.FriendsController.getAll
+
 GET     /findByReq/:from_uid/:to_uid   controllers.FriendReqController.findByReq(from_uid: String,to_uid:String)
 
 POST    /saveFrnd                    controllers.FriendsController.save
@@ -38,7 +40,7 @@ GET    /isFriend/:current_id/:userId     controllers.FriendsController.isFriend(
 
 DELETE  /deleteReq/:from/:to                  controllers.FriendReqController.deleteReq(from: String,to:String)
 
-GET     /deleteFrnd                       controllers.FriendsController.deleteFriend
+DELETE     /deleteFrnd                       controllers.FriendsController.deleteFriend
 
 POST     /sendPush/:uuid             controllers.FriendsController.sendNotify(uuid: String)
 

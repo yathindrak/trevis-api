@@ -51,7 +51,7 @@ Seq[Any](format.raw/*1.4*/("""
 
               /*
                   -- GENERATED --
-                  DATE: Mon May 28 11:30:33 IST 2018
+                  DATE: Tue May 29 11:47:45 IST 2018
                   SOURCE: C:/Users/URAWYYA/IdeaProjects/trevis-api/app/views/index.scala.html
                   HASH: e7b67f9143e77fd41846670f700f7278d5705eda
                   MATRIX: 941->1|1037->3|1067->8|1098->31|1137->33|1167->37|1224->65

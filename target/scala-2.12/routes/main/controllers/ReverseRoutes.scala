@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/URAWYYA/IdeaProjects/trevis-api/conf/routes
-// @DATE:Mon May 28 11:30:32 IST 2018
+// @DATE:Tue May 29 11:47:44 IST 2018
 
 import play.api.mvc.Call
 
@@ -18,17 +18,17 @@ package controllers {
     }
 
   
-    // @LINE:45
+    // @LINE:47
     def at(file:String): Call = {
     
       (file: @unchecked) match {
       
-        // @LINE:45
+        // @LINE:47
         case (file) if file == "index.html" =>
           implicit lazy val _rrc = new play.core.routing.ReverseRouteContext(Map(("path", "/public/swagger"), ("file", "index.html"))); _rrc
           Call("GET", _prefix + { _defaultPrefix } + "docs/")
       
-        // @LINE:47
+        // @LINE:49
         case (file)  =>
           implicit lazy val _rrc = new play.core.routing.ReverseRouteContext(Map(("path", "/public/swagger"))); _rrc
           Call("GET", _prefix + { _defaultPrefix } + "docs/" + implicitly[play.api.mvc.PathBindable[String]].unbind("file", file))
@@ -45,38 +45,44 @@ package controllers {
   
   }
 
-  // @LINE:33
+  // @LINE:31
   class ReverseFriendsController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:43
+    // @LINE:45
     def sendNotify(uuid:String): Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "sendPush/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("uuid", uuid)))
     }
   
-    // @LINE:35
+    // @LINE:37
     def append(uid:String): Call = {
       
       Call("PUT", _prefix + { _defaultPrefix } + "storeFrnd/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("uid", uid)))
     }
   
-    // @LINE:33
+    // @LINE:31
+    def getAll(): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "getAllFrnds")
+    }
+  
+    // @LINE:35
     def save(): Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "saveFrnd")
     }
   
-    // @LINE:41
+    // @LINE:43
     def deleteFriend(): Call = {
       
-      Call("GET", _prefix + { _defaultPrefix } + "deleteFrnd")
+      Call("DELETE", _prefix + { _defaultPrefix } + "deleteFrnd")
     }
   
-    // @LINE:37
+    // @LINE:39
     def isFriend(current_id:String, userId:String): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "isFriend/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("current_id", current_id)) + "/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("userId", userId)))
@@ -150,14 +156,14 @@ package controllers {
   
   }
 
-  // @LINE:46
+  // @LINE:48
   class ReverseApiHelpController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:46
+    // @LINE:48
     def getResources(): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "docs/swagger.json")
@@ -172,7 +178,7 @@ package controllers {
     }
 
   
-    // @LINE:39
+    // @LINE:41
     def deleteReq(from:String, to:String): Call = {
       
       Call("DELETE", _prefix + { _defaultPrefix } + "deleteReq/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("from", from)) + "/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("to", to)))
@@ -190,7 +196,7 @@ package controllers {
       Call("GET", _prefix + { _defaultPrefix } + "getAllReqs")
     }
   
-    // @LINE:31
+    // @LINE:33
     def findByReq(from_uid:String, to_uid:String): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "findByReq/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("from_uid", from_uid)) + "/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("to_uid", to_uid)))

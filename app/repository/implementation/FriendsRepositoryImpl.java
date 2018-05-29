@@ -51,10 +51,11 @@ public class FriendsRepositoryImpl  implements IFriendsRepository {
         Friend friend =datastore().find(Friend.class).field("userId").equal(current_id).get();
         System.out.println(friend.toString());
         Friends[] friends = friend.getFriends();
+        System.out.println(friends[0].getUid());
+        System.out.println(friends.length);
 
         for (int i=0; i < friends.length; i++){
-            System.out.println(friends[i].getUid());
-            if (friends[i].getUid().equals(selected_uid)){
+            if (friends[i].getUid() != null && friends[i].getUid().equals(selected_uid)){
                 return true;
             }
         }
@@ -84,8 +85,9 @@ public class FriendsRepositoryImpl  implements IFriendsRepository {
     }
 
     @Override
-    public void sendNotify(String uid) {
+    public void sendNotify(String uid, String lat, String lng) {
         Friend friend = datastore().createQuery(Friend.class).field("userId").equal(uid).get();
+        User t_user = datastore().createQuery(User.class).field("userId").equal(uid).get();
 
         Friends[] arr = friend.getFriends();
 
@@ -109,13 +111,13 @@ public class FriendsRepositoryImpl  implements IFriendsRepository {
         for (String token : tokens) {
             if (token != null){
                 //System.out.println(token);
-                sendNotification(token);
+                sendNotification(token , t_user.getName(), lat, lng);
             }
         }
         //sendNotification();
     }
 
-    public void sendNotification(String device_token){
+    public void sendNotification(String device_token,String name, String lat, String lng){
 
         DefaultHttpClient httpClient = new DefaultHttpClient();
         HttpPost postRequest = new HttpPost(
@@ -124,8 +126,8 @@ public class FriendsRepositoryImpl  implements IFriendsRepository {
         NotificationRequestModel notificationRequestModel = new NotificationRequestModel();
         NotificationData notificationData = new NotificationData();
 
-        notificationData.setDetail("Warning!!!");
-        notificationData.setTitle("Your friend is in a trouble");
+        notificationData.setDetail("Alert!!!");
+        notificationData.setTitle("Your friend "+name+" is in a trouble");
         notificationRequestModel.setData(notificationData);
         notificationRequestModel.setTo(device_token);
 

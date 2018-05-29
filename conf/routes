@@ -28,6 +28,8 @@ POST    /saveReq                    controllers.FriendReqController.save
 
 GET     /getAllReqs                 controllers.FriendReqController.getAll
 
+GET     /getAllFrnds                 controllers.FriendsController.getAll
+
 GET     /findByReq/:from_uid/:to_uid   controllers.FriendReqController.findByReq(from_uid: String,to_uid:String)
 
 POST    /saveFrnd                    controllers.FriendsController.save
@@ -40,7 +42,7 @@ DELETE  /deleteReq/:from/:to                  controllers.FriendReqController.de
 
 DELETE     /deleteFrnd                       controllers.FriendsController.deleteFriend
 
-POST     /sendPush/:uuid             controllers.FriendsController.sendNotify(uuid: String)
+POST     /sendPush/:uuid/:lat/:lng             controllers.FriendsController.sendNotify(uuid: String, String lat, String lng)
 
 GET     /docs/              controllers.Assets.at(path="/public/swagger",file="index.html")
 GET     /docs/swagger.json  controllers.ApiHelpController.getResources

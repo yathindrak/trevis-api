@@ -154,7 +154,7 @@ public class FriendsController  extends Controller {
             notes = "Should pass uid of a user",
             response = boolean.class,
             httpMethod = "DELETE")
-    public Result sendNotify(String uuid){
+    public Result sendNotify(String uuid,String lat, String lng){
         friendsRepo.sendNotify(uuid);
         return ok();
     }
