@@ -42,7 +42,9 @@ DELETE  /deleteReq/:from/:to                  controllers.FriendReqController.de
 
 DELETE     /deleteFrnd                       controllers.FriendsController.deleteFriend
 
-POST     /sendPush/:uuid             controllers.FriendsController.sendNotify(uuid: String)
+POST     /sendPush/:uuid/:lat/:lng             controllers.FriendsController.sendNotify(uuid: String, lat: String, lng: String)
+
+POST     /locUpdate/:uid/:latitude/:longitude      controllers.UserController.updateLocation(uid: String, latitude: Double, longitude: Double)
 
 GET     /docs/              controllers.Assets.at(path="/public/swagger",file="index.html")
 GET     /docs/swagger.json  controllers.ApiHelpController.getResources

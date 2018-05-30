@@ -27,4 +27,6 @@ public interface IUserRepository {
 
 
     User findById(String uid);
+
+    void updateLocation(String uid, double latitude, double longitude);
 }

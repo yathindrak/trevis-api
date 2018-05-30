@@ -196,8 +196,6 @@ public class UserController extends Controller {
         return ok(Json.toJson("Update user successfully"));
     }
 
-
-
     public Result sendNotification(String device_token){
         System.out.println("Welcome to Developine");
 
@@ -278,6 +276,16 @@ public class UserController extends Controller {
                 .sendMail(email);
 
 
+        return ok();
+    }
+
+
+    @ApiOperation(value = "Update the user location",
+            response = User.class,
+            httpMethod = "POST")
+    public Result updateLocation(String uid, double latitude, double longitude){
+
+        user.updateLocation(uid, latitude, longitude);
         return ok();
     }
 }

@@ -12,4 +12,6 @@ public interface IUser {
     String password = null;
     String mobile = null;
     String gender = null;
+    double latitude = 0.0;
+    double longitude = 0.0;
 }

@@ -1,7 +1,6 @@
 package repository.implementation;
 
 import models.Friends;
-import models.FriendRequest;
 import models.User;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.query.Query;
@@ -52,7 +51,6 @@ public class UserRepositoryImpl implements IUserRepository {
             UpdateOperations<User> ops = datastore().createUpdateOperations(User.class).addToSet("address",address);
             datastore().update(query, ops);
         }
-
         return true;
     }
 
@@ -82,6 +80,28 @@ public class UserRepositoryImpl implements IUserRepository {
         datastore().updateFirst(query,user,true);
 
         return true;
+    }
+
+    @Override
+    public void updateLocation(String uid, double latitude, double longitude){
+        Query query = datastore().find(User.class).field("userId").equal(uid);
+
+        User user = datastore().find(User.class).field("userId").equal(uid).get();
+        System.out.println(user.toString());
+        System.out.println("uid "+uid + "lat " + latitude + "Lng "+ longitude);
+        User user_temp = user;
+        user_temp.setLatitude(latitude);
+        user_temp.setLongitude(longitude);
+
+
+
+        UpdateOperations<User> operation1 = datastore().createUpdateOperations(User.class).set("latitude", latitude);
+        UpdateOperations<User> operation2 = datastore().createUpdateOperations(User.class).set("longitude", longitude);
+
+        datastore().update(query, operation1);
+        datastore().update(query, operation2);
+
+        //datastore().updateFirst(query,user_temp,true);
     }
 
 

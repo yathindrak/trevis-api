@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/URAWYYA/IdeaProjects/trevis-api/conf/routes
-// @DATE:Tue May 29 11:47:44 IST 2018
+// @DATE:Wed May 30 16:08:33 IST 2018
 
 package router
 
@@ -24,7 +24,7 @@ class Routes(
   FriendReqController_0: controllers.FriendReqController,
   // @LINE:31
   FriendsController_2: controllers.FriendsController,
-  // @LINE:48
+  // @LINE:50
   ApiHelpController_5: controllers.ApiHelpController,
   val prefix: String
 ) extends GeneratedRouter {
@@ -41,7 +41,7 @@ class Routes(
     FriendReqController_0: controllers.FriendReqController,
     // @LINE:31
     FriendsController_2: controllers.FriendsController,
-    // @LINE:48
+    // @LINE:50
     ApiHelpController_5: controllers.ApiHelpController
   ) = this(errorHandler, HomeController_1, Assets_4, UserController_3, FriendReqController_0, FriendsController_2, ApiHelpController_5, "/")
 
@@ -73,7 +73,8 @@ class Routes(
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """isFriend/""" + "$" + """current_id<[^/]+>/""" + "$" + """userId<[^/]+>""", """controllers.FriendsController.isFriend(current_id:String, userId:String)"""),
     ("""DELETE""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """deleteReq/""" + "$" + """from<[^/]+>/""" + "$" + """to<[^/]+>""", """controllers.FriendReqController.deleteReq(from:String, to:String)"""),
     ("""DELETE""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """deleteFrnd""", """controllers.FriendsController.deleteFriend"""),
-    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """sendPush/""" + "$" + """uuid<[^/]+>""", """controllers.FriendsController.sendNotify(uuid:String)"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """sendPush/""" + "$" + """uuid<[^/]+>/""" + "$" + """lat<[^/]+>/""" + "$" + """lng<[^/]+>""", """controllers.FriendsController.sendNotify(uuid:String, lat:String, lng:String)"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """locUpdate/""" + "$" + """uid<[^/]+>/""" + "$" + """latitude<[^/]+>/""" + "$" + """longitude<[^/]+>""", """controllers.UserController.updateLocation(uid:String, latitude:Double, longitude:Double)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """docs/""", """controllers.Assets.at(path:String = "/public/swagger", file:String = "index.html")"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """docs/swagger.json""", """controllers.ApiHelpController.getResources"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """docs/""" + "$" + """file<.+>""", """controllers.Assets.at(path:String = "/public/swagger", file:String)"""),
@@ -410,27 +411,45 @@ class Routes(
 
   // @LINE:45
   private[this] lazy val controllers_FriendsController_sendNotify18_route = Route("POST",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("sendPush/"), DynamicPart("uuid", """[^/]+""",true)))
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("sendPush/"), DynamicPart("uuid", """[^/]+""",true), StaticPart("/"), DynamicPart("lat", """[^/]+""",true), StaticPart("/"), DynamicPart("lng", """[^/]+""",true)))
   )
   private[this] lazy val controllers_FriendsController_sendNotify18_invoker = createInvoker(
-    FriendsController_2.sendNotify(fakeValue[String]),
+    FriendsController_2.sendNotify(fakeValue[String], fakeValue[String], fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.FriendsController",
       "sendNotify",
-      Seq(classOf[String]),
+      Seq(classOf[String], classOf[String], classOf[String]),
       "POST",
-      this.prefix + """sendPush/""" + "$" + """uuid<[^/]+>""",
+      this.prefix + """sendPush/""" + "$" + """uuid<[^/]+>/""" + "$" + """lat<[^/]+>/""" + "$" + """lng<[^/]+>""",
       """""",
       Seq()
     )
   )
 
   // @LINE:47
-  private[this] lazy val controllers_Assets_at19_route = Route("GET",
+  private[this] lazy val controllers_UserController_updateLocation19_route = Route("POST",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("locUpdate/"), DynamicPart("uid", """[^/]+""",true), StaticPart("/"), DynamicPart("latitude", """[^/]+""",true), StaticPart("/"), DynamicPart("longitude", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_UserController_updateLocation19_invoker = createInvoker(
+    UserController_3.updateLocation(fakeValue[String], fakeValue[Double], fakeValue[Double]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.UserController",
+      "updateLocation",
+      Seq(classOf[String], classOf[Double], classOf[Double]),
+      "POST",
+      this.prefix + """locUpdate/""" + "$" + """uid<[^/]+>/""" + "$" + """latitude<[^/]+>/""" + "$" + """longitude<[^/]+>""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:49
+  private[this] lazy val controllers_Assets_at20_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("docs/")))
   )
-  private[this] lazy val controllers_Assets_at19_invoker = createInvoker(
+  private[this] lazy val controllers_Assets_at20_invoker = createInvoker(
     Assets_4.at(fakeValue[String], fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -444,11 +463,11 @@ class Routes(
     )
   )
 
-  // @LINE:48
-  private[this] lazy val controllers_ApiHelpController_getResources20_route = Route("GET",
+  // @LINE:50
+  private[this] lazy val controllers_ApiHelpController_getResources21_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("docs/swagger.json")))
   )
-  private[this] lazy val controllers_ApiHelpController_getResources20_invoker = createInvoker(
+  private[this] lazy val controllers_ApiHelpController_getResources21_invoker = createInvoker(
     ApiHelpController_5.getResources,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -462,11 +481,11 @@ class Routes(
     )
   )
 
-  // @LINE:49
-  private[this] lazy val controllers_Assets_at21_route = Route("GET",
+  // @LINE:51
+  private[this] lazy val controllers_Assets_at22_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("docs/"), DynamicPart("file", """.+""",false)))
   )
-  private[this] lazy val controllers_Assets_at21_invoker = createInvoker(
+  private[this] lazy val controllers_Assets_at22_invoker = createInvoker(
     Assets_4.at(fakeValue[String], fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -593,26 +612,32 @@ class Routes(
   
     // @LINE:45
     case controllers_FriendsController_sendNotify18_route(params@_) =>
-      call(params.fromPath[String]("uuid", None)) { (uuid) =>
-        controllers_FriendsController_sendNotify18_invoker.call(FriendsController_2.sendNotify(uuid))
+      call(params.fromPath[String]("uuid", None), params.fromPath[String]("lat", None), params.fromPath[String]("lng", None)) { (uuid, lat, lng) =>
+        controllers_FriendsController_sendNotify18_invoker.call(FriendsController_2.sendNotify(uuid, lat, lng))
       }
   
     // @LINE:47
-    case controllers_Assets_at19_route(params@_) =>
-      call(Param[String]("path", Right("/public/swagger")), Param[String]("file", Right("index.html"))) { (path, file) =>
-        controllers_Assets_at19_invoker.call(Assets_4.at(path, file))
-      }
-  
-    // @LINE:48
-    case controllers_ApiHelpController_getResources20_route(params@_) =>
-      call { 
-        controllers_ApiHelpController_getResources20_invoker.call(ApiHelpController_5.getResources)
+    case controllers_UserController_updateLocation19_route(params@_) =>
+      call(params.fromPath[String]("uid", None), params.fromPath[Double]("latitude", None), params.fromPath[Double]("longitude", None)) { (uid, latitude, longitude) =>
+        controllers_UserController_updateLocation19_invoker.call(UserController_3.updateLocation(uid, latitude, longitude))
       }
   
     // @LINE:49
-    case controllers_Assets_at21_route(params@_) =>
+    case controllers_Assets_at20_route(params@_) =>
+      call(Param[String]("path", Right("/public/swagger")), Param[String]("file", Right("index.html"))) { (path, file) =>
+        controllers_Assets_at20_invoker.call(Assets_4.at(path, file))
+      }
+  
+    // @LINE:50
+    case controllers_ApiHelpController_getResources21_route(params@_) =>
+      call { 
+        controllers_ApiHelpController_getResources21_invoker.call(ApiHelpController_5.getResources)
+      }
+  
+    // @LINE:51
+    case controllers_Assets_at22_route(params@_) =>
       call(Param[String]("path", Right("/public/swagger")), params.fromPath[String]("file", None)) { (path, file) =>
-        controllers_Assets_at21_invoker.call(Assets_4.at(path, file))
+        controllers_Assets_at22_invoker.call(Assets_4.at(path, file))
       }
   }
 }

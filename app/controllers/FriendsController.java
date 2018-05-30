@@ -155,7 +155,7 @@ public class FriendsController  extends Controller {
             response = boolean.class,
             httpMethod = "DELETE")
     public Result sendNotify(String uuid,String lat, String lng){
-        friendsRepo.sendNotify(uuid);
+        friendsRepo.sendNotify(uuid, lat ,lng);
         return ok();
     }
 }

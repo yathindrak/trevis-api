@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/URAWYYA/IdeaProjects/trevis-api/conf/routes
-// @DATE:Tue May 29 11:47:44 IST 2018
+// @DATE:Wed May 30 16:08:33 IST 2018
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -19,7 +19,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:47
+    // @LINE:49
     def at: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.at",
       """
@@ -57,16 +57,6 @@ package controllers.javascript {
     }
 
   
-    // @LINE:45
-    def sendNotify: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.FriendsController.sendNotify",
-      """
-        function(uuid0) {
-          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "sendPush/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("uuid", uuid0))})
-        }
-      """
-    )
-  
     // @LINE:37
     def append: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.FriendsController.append",
@@ -83,6 +73,16 @@ package controllers.javascript {
       """
         function() {
           return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "getAllFrnds"})
+        }
+      """
+    )
+  
+    // @LINE:45
+    def sendNotify: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.FriendsController.sendNotify",
+      """
+        function(uuid0,lat1,lng2) {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "sendPush/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("uuid", uuid0)) + "/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("lat", lat1)) + "/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("lng", lng2))})
         }
       """
     )
@@ -157,6 +157,16 @@ package controllers.javascript {
       """
     )
   
+    // @LINE:47
+    def updateLocation: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.UserController.updateLocation",
+      """
+        function(uid0,latitude1,longitude2) {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "locUpdate/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("uid", uid0)) + "/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Double]].javascriptUnbind + """)("latitude", latitude1)) + "/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Double]].javascriptUnbind + """)("longitude", longitude2))})
+        }
+      """
+    )
+  
     // @LINE:19
     def sendMail: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.UserController.sendMail",
@@ -219,7 +229,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:48
+  // @LINE:50
   class ReverseApiHelpController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -227,7 +237,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:48
+    // @LINE:50
     def getResources: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.ApiHelpController.getResources",
       """

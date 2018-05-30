@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/URAWYYA/IdeaProjects/trevis-api/conf/routes
-// @DATE:Tue May 29 11:47:44 IST 2018
+// @DATE:Wed May 30 16:08:33 IST 2018
 
 import play.api.mvc.Call
 
@@ -18,17 +18,17 @@ package controllers {
     }
 
   
-    // @LINE:47
+    // @LINE:49
     def at(file:String): Call = {
     
       (file: @unchecked) match {
       
-        // @LINE:47
+        // @LINE:49
         case (file) if file == "index.html" =>
           implicit lazy val _rrc = new play.core.routing.ReverseRouteContext(Map(("path", "/public/swagger"), ("file", "index.html"))); _rrc
           Call("GET", _prefix + { _defaultPrefix } + "docs/")
       
-        // @LINE:49
+        // @LINE:51
         case (file)  =>
           implicit lazy val _rrc = new play.core.routing.ReverseRouteContext(Map(("path", "/public/swagger"))); _rrc
           Call("GET", _prefix + { _defaultPrefix } + "docs/" + implicitly[play.api.mvc.PathBindable[String]].unbind("file", file))
@@ -52,12 +52,6 @@ package controllers {
     }
 
   
-    // @LINE:45
-    def sendNotify(uuid:String): Call = {
-      
-      Call("POST", _prefix + { _defaultPrefix } + "sendPush/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("uuid", uuid)))
-    }
-  
     // @LINE:37
     def append(uid:String): Call = {
       
@@ -68,6 +62,12 @@ package controllers {
     def getAll(): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "getAllFrnds")
+    }
+  
+    // @LINE:45
+    def sendNotify(uuid:String, lat:String, lng:String): Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "sendPush/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("uuid", uuid)) + "/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("lat", lat)) + "/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("lng", lng)))
     }
   
     // @LINE:35
@@ -115,6 +115,12 @@ package controllers {
       Call("POST", _prefix + { _defaultPrefix } + "send/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("device_token", device_token)))
     }
   
+    // @LINE:47
+    def updateLocation(uid:String, latitude:Double, longitude:Double): Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "locUpdate/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("uid", uid)) + "/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Double]].unbind("latitude", latitude)) + "/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Double]].unbind("longitude", longitude)))
+    }
+  
     // @LINE:19
     def sendMail(email_to:String): Call = {
       
@@ -156,14 +162,14 @@ package controllers {
   
   }
 
-  // @LINE:48
+  // @LINE:50
   class ReverseApiHelpController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:48
+    // @LINE:50
     def getResources(): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "docs/swagger.json")

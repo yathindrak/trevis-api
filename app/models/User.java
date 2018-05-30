@@ -19,6 +19,8 @@ public class User implements IUser{
     private String password;
     private String mobile;
     private String gender;
+    private double latitude;
+    private double longitude;
 
     public String getId() {
         return id;
@@ -114,5 +116,21 @@ public class User implements IUser{
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 }
