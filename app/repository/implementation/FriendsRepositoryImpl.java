@@ -146,7 +146,7 @@ public class FriendsRepositoryImpl  implements IFriendsRepository {
         input.setContentType("application/json");
         postRequest.addHeader(
                 "Authorization",
-                "key=AAAAGDQO1tQ:APA91bGwAfDz8fF0EJaX8BaIcH8TyL_Ga9MlFNbzr3p8eBxX9_roQRP2f3tWSB6F_ILMVUMj2_c5xR9NsD44cvdPOx7OWgvpHcZ47FiUMPCYlgiycinPZwsWMihaY574mWVkCIqwMd_m");
+                "key=API_KEY_SHOULD_GO_HERE");
         postRequest.setEntity(input);
 
 

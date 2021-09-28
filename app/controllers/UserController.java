@@ -226,7 +226,7 @@ public class UserController extends Controller {
             e.printStackTrace();
         }
         input.setContentType("application/json");
-        postRequest.addHeader("Authorization", "key=AAAA2U0NWhk:APA91bEIyK83CJMgM4NkA5JlO42laoT6VRAmVp4kv-DVdQB01-Eraam02B6tUiA6rYiBYrP2A08VZhgpFi2qDv4knkPi5_S2Ug7XHxzl5ILGN3-2h3tc17LMMhcMJRtqP_6KRBb_Ub2U");
+        postRequest.addHeader("Authorization", "key=KEY_SHOULD_GOES_HERE");
         postRequest.setEntity(input);
 
 
