@@ -34,10 +34,8 @@ public class config {
         options.socketKeepAlive(true);
         //mongoClient = new MongoClient(mongoAddress, options.build());
 
-        MongoClientURI uri = new MongoClientURI("mongodb://trevis-db:trevis123@ds227740.mlab.com:27740/trevis-db", options);
-
-        //MongoClient mongoClient = new MongoClient("mongodb://trevis-db:trevis123@ds227740.mlab.com:27740");
-
+        MongoClientURI uri = new MongoClientURI("DB_URI_SHOULD_GO_HERE", options);
+        
         datastore = morphia.createDatastore(new MongoClient(uri), "trevis-db");
 
 
